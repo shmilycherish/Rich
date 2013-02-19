@@ -45,8 +45,7 @@ public class StartRich {
 		charactersTypes=readUserInput();		
 		playersNumber=charactersTypes.length();
 		HashMap gamePlayers=new HashMap();				
-		GamePlayer gamePlayer;
-		
+		GamePlayer gamePlayer;		
 		for(int i=0;i<playersNumber;i++){			
 			gamePlayer=new GamePlayer(charactersTypes.substring(i, i+1),funds);			
 			gamePlayers.put(charactersTypes.substring(i, i+1), gamePlayer);
@@ -140,14 +139,42 @@ public class StartRich {
 		if(gamePlayer.location>=64&&gamePlayer.location<=69)
 			gamePlayer.points+=ground.point;
 		else{
-			String groundOwner=ground.owners;
-			estateOperation(groundOwner,gamePlayer);
+			estateOperation(gamePlayer);
 		}
 	}
 
-	public void estateOperation(String groundOwner,GamePlayer gamePlayer) {
-		if(groundOwner.equals("0")){
-			System.out.println("是否购买该处空地，xxx元（Y/N）?");
+	public void estateOperation(GamePlayer gamePlayer) {
+		int location=gamePlayer.location;
+		Ground ground=gameMap.map.get(location);
+		if(ground.owners.equals("0")){
+			System.out.println("是否购买该处空地，"+ground.price+"元（Y/N）?");		
+			checkBuyanswer(gamePlayer);			
+		}else if(ground.owners.equals(gamePlayer.charactersType)){
+			if(gameMap.map.get(location).groundType<3){
+				System.out.println("是否升级该处地产，"+ground.price+"元（Y/N）?");				
+				checkBuyanswer(gamePlayer);
+			}
+		}else{
+			
+		}
+		
+	}
+
+	private void checkBuyanswer(GamePlayer gamePlayer) {
+		// TODO Auto-generated method stub
+		String buyResult=readUserInput();
+		if(buyResult.equalsIgnoreCase("Y")){
+			if(gamePlayer.funds>=gameMap.map.get(gamePlayer.location).price){
+				gamePlayer.funds-=gameMap.map.get(gamePlayer.location).price;
+				gameMap.map.get(gamePlayer.location).owners=gamePlayer.charactersType;
+			}else{
+				System.out.println("剩余资金不够");
+			}
+		}else if(buyResult.equalsIgnoreCase("N")){
+			//doNothing
+			return;
+		}else{
+			checkBuyanswer(gamePlayer);
 		}
 	}
 

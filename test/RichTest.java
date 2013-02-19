@@ -38,7 +38,8 @@ public class RichTest {
 		assertThat(n,is(-1));
 	}
 	
-	
-	
-	
+	@Test
+	public void buyestateOperationTest(){
+		
+	}
 }
