@@ -19,27 +19,23 @@ public class GameMap {
             Ground ground = null;
             if (isStartPoint(i)) {
                 ground = GroundFactory.buildStartGround();
-            } else if (i > 0 && i < 28) {
-                if (isHospitalPoint(i)) {
-                    ground = GroundFactory.buildHospitalGround();
-                } else {
-                    ground = GroundFactory.buildEmptyGroundWithPrice(200);
-                }
+            } else if (isHospitalPoint(i)) {
+                ground = GroundFactory.buildHospitalGround();
+            } else if (isInAreaOne(i) || isInAreaTwo(i)) {
+                ground = GroundFactory.buildEmptyGroundWithPrice(200);
             } else if (isToyPoint(i)) {
                 ground = GroundFactory.buildToyGround();
-            } else if (i > 28 && i < 35) {
+            } else if (isInAreaThree(i)) {
                 ground = GroundFactory.buildEmptyGroundWithPrice(500);
             } else if (isGiftPoint(i)) {
                 ground = GroundFactory.buildGiftGround();
-            } else if (i > 35 && i < 63) {
-                if (isPrisonPoint(i)) {
-                    ground = GroundFactory.buildPrisonGround();
-                } else {
-                    ground = GroundFactory.buildEmptyGroundWithPrice(300);
-                }
-            } else if (isMagicPoint(i)) {
+            } else if (isInAreaFour(i) || isInAreaFive(i)) {
+                ground = GroundFactory.buildEmptyGroundWithPrice(300);
+            } else if (isPrisonPoint(i)) {
+                ground = GroundFactory.buildPrisonGround();
+            }else if (isMagicPoint(i)) {
                 ground = GroundFactory.buildMagicGround();
-            } else if (i > 63) {
+            } else if (isInMoneyArea(i)) {
                 ground = GroundFactory.buildMoneyGround(points[i - 64]);
             }
             groundList.add(ground);
@@ -49,28 +45,52 @@ public class GameMap {
 
     }
 
-    private boolean isMagicPoint(int i) {
-        return i == 63;
+    private boolean isInAreaFour(int i) {
+        return i > 35 && i < 49;
     }
 
-    private boolean isPrisonPoint(int i) {
-        return i == 49;
+    private boolean isInAreaFive(int i) {
+        return i > 49 && i < 63;
     }
 
-    private boolean isGiftPoint(int i) {
-        return i == 35;
+    private boolean isInAreaThree(int i) {
+        return i > 28 && i < 35;
     }
 
-    private boolean isToyPoint(int i) {
-        return i == 28;
+    private boolean isInAreaOne(int i) {
+        return i > 0 && i < 14;
     }
 
-    private boolean isHospitalPoint(int i) {
-        return i == 14;
+    private boolean isInAreaTwo(int i) {
+        return i > 14 && i < 28;
     }
 
-    private boolean isStartPoint(int i) {
-        return i == 0;
+    private boolean isInMoneyArea(int position) {
+        return position > 63;
+    }
+
+    private boolean isMagicPoint(int position) {
+        return position == 63;
+    }
+
+    private boolean isPrisonPoint(int position) {
+        return position == 49;
+    }
+
+    private boolean isGiftPoint(int position) {
+        return position == 35;
+    }
+
+    private boolean isToyPoint(int position) {
+        return position == 28;
+    }
+
+    private boolean isHospitalPoint(int position) {
+        return position == 14;
+    }
+
+    private boolean isStartPoint(int position) {
+        return position == 0;
     }
 
     public void printMap() {
