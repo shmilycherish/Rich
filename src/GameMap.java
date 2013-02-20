@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GameMap {
     public List<Ground> groundList = new ArrayList<Ground>();
-    private int[] point = {20, 80, 100, 40, 80, 60};
+    private int[] points = {20, 80, 100, 40, 80, 60};
     private String groundOwner = "0";
 
     public GameMap() {
@@ -18,79 +18,35 @@ public class GameMap {
         for (int i = 0; i <= 69; i++) {
             Ground ground = new Ground();
             if (i == 0) {
-                ground = buildStartPoint();
+                ground = GroundFactory.buildStartGround();
             } else if (i > 0 && i < 28) {
                 if (i != 14) {
-                    ground = buildEmptyPointWithPrice(200);
+                    ground = GroundFactory.buildEmptyGroundWithPrice(200);
                 } else {
-                    ground = buildHospitalPoint();
+                    ground = GroundFactory.buildHospitalGround();
                 }
             } else if (i == 28) {
-                ground = buildToyPoint();
+                ground = GroundFactory.buildToyGround();
             } else if (i > 28 && i < 35) {
-                ground = buildEmptyPointWithPrice(500);
+                ground = GroundFactory.buildEmptyGroundWithPrice(500);
             } else if (i == 35) {
-                ground = buildGiftPoint();
+                ground = GroundFactory.buildGiftGround();
             } else if (i > 35 && i < 63) {
                 if (i != 49) {
-                    ground = buildEmptyPointWithPrice(300);
+                    ground = GroundFactory.buildEmptyGroundWithPrice(300);
                 } else {
-                    ground = buildPrisonPoint();
+                    ground = GroundFactory.buildPrisonGround();
                 }
             } else if (i == 63) {
-                ground.initalizeGround("M");
+                ground = GroundFactory.buildMagicGround();
             } else if (i > 63) {
-                ground = buildMoneyPoint(i);
+                ground = GroundFactory.buildMoneyGround(points[i - 64]);
             }
             groundList.add(ground);
         }
 
         return groundList;
 
-    }
-
-    private Ground buildMoneyPoint(int i) {
-        Ground ground = new Ground();
-        ground.initalizeGround("$");
-        ground.setPoint(point[i - 64]);
-        return ground;
-    }
-
-    private Ground buildPrisonPoint() {
-        Ground ground = new Ground();
-        ground.initalizeGround("P");
-        return ground;
-    }
-
-    private Ground buildGiftPoint() {
-        Ground ground = new Ground();
-        ground.initalizeGround("G");
-        return ground;
-    }
-
-    private Ground buildToyPoint() {
-        Ground ground = new Ground();
-        ground.initalizeGround("T");
-        return ground;
-    }
-
-    private Ground buildHospitalPoint() {
-        Ground ground = new Ground();
-        ground.initalizeGround("H");
-        return ground;
-    }
-
-    private Ground buildEmptyPointWithPrice(int price) {
-        Ground ground = new Ground();
-        ground.initalizeGround("0");
-        ground.setPrice(price);
-        return ground;
-    }
-
-    private Ground buildStartPoint() {
-        Ground ground = new Ground();
-        ground.initalizeGround("S");
-        return ground;
     }
 
     public void printMap() {
