@@ -16,28 +16,28 @@ public class GameMap {
         groundList.clear();
 
         for (int i = 0; i <= 69; i++) {
-            Ground ground = new Ground();
-            if (i == 0) {
+            Ground ground = null;
+            if (isStartPoint(i)) {
                 ground = GroundFactory.buildStartGround();
             } else if (i > 0 && i < 28) {
-                if (i != 14) {
-                    ground = GroundFactory.buildEmptyGroundWithPrice(200);
-                } else {
+                if (isHospitalPoint(i)) {
                     ground = GroundFactory.buildHospitalGround();
+                } else {
+                    ground = GroundFactory.buildEmptyGroundWithPrice(200);
                 }
-            } else if (i == 28) {
+            } else if (isToyPoint(i)) {
                 ground = GroundFactory.buildToyGround();
             } else if (i > 28 && i < 35) {
                 ground = GroundFactory.buildEmptyGroundWithPrice(500);
-            } else if (i == 35) {
+            } else if (isGiftPoint(i)) {
                 ground = GroundFactory.buildGiftGround();
             } else if (i > 35 && i < 63) {
-                if (i != 49) {
-                    ground = GroundFactory.buildEmptyGroundWithPrice(300);
-                } else {
+                if (isPrisonPoint(i)) {
                     ground = GroundFactory.buildPrisonGround();
+                } else {
+                    ground = GroundFactory.buildEmptyGroundWithPrice(300);
                 }
-            } else if (i == 63) {
+            } else if (isMagicPoint(i)) {
                 ground = GroundFactory.buildMagicGround();
             } else if (i > 63) {
                 ground = GroundFactory.buildMoneyGround(points[i - 64]);
@@ -47,6 +47,30 @@ public class GameMap {
 
         return groundList;
 
+    }
+
+    private boolean isMagicPoint(int i) {
+        return i == 63;
+    }
+
+    private boolean isPrisonPoint(int i) {
+        return i == 49;
+    }
+
+    private boolean isGiftPoint(int i) {
+        return i == 35;
+    }
+
+    private boolean isToyPoint(int i) {
+        return i == 28;
+    }
+
+    private boolean isHospitalPoint(int i) {
+        return i == 14;
+    }
+
+    private boolean isStartPoint(int i) {
+        return i == 0;
     }
 
     public void printMap() {
