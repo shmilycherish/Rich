@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class GameMap {
-    public List<Ground> map = new ArrayList<Ground>();
+    public List<Ground> groundList = new ArrayList<Ground>();
     private int[] point = {20, 80, 100, 40, 80, 60};
     private String groundOwner = "0";
 
@@ -13,7 +13,7 @@ public class GameMap {
 
     public List<Ground> initalizeMap() {
 
-        map.clear();
+        groundList.clear();
 
         for (int i = 0; i <= 69; i++) {
             Ground ground = new Ground();
@@ -42,10 +42,10 @@ public class GameMap {
             } else if (i > 63) {
                 ground = buildMoneyPoint(i);
             }
-            map.add(ground);
+            groundList.add(ground);
         }
 
-        return map;
+        return groundList;
 
     }
 
@@ -95,7 +95,7 @@ public class GameMap {
 
     public void printMap() {
         for (int i = 0; i <= 28; i++) {
-            System.out.print(map.get(i).getDisplay());
+            System.out.print(groundList.get(i).getDisplay());
         }
         System.out.println();
         int cha = 40;
@@ -105,15 +105,15 @@ public class GameMap {
             cha = cha - 2;
         }
         for (int i = 63; i >= 35; i--) {
-            System.out.print(map.get(i).getDisplay());
+            System.out.print(groundList.get(i).getDisplay());
         }
     }
 
     public void printLine(int firstGround, int lastGround) {
-        System.out.print(map.get(firstGround).getDisplay());
+        System.out.print(groundList.get(firstGround).getDisplay());
         for (int i = 1; i <= 27; i++)
             System.out.print(" ");
-        System.out.println(map.get(lastGround).getDisplay());
+        System.out.println(groundList.get(lastGround).getDisplay());
     }
 
 }
