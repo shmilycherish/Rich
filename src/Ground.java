@@ -1,11 +1,11 @@
 
 public class Ground {	
-    public String groundName="0";	
-	public int groundType=0;
-	public int price=0;
-	public int point=0;
-	public String owners="0";//0wei
-	public String display="0";
+    private String groundName="0";
+	private int groundType=0;
+	private int price=0;
+	private int point=0;
+	private String owners="0";//0wei
+	private String display="0";
 	
 	
 	public void initalizeGround(String groundName){

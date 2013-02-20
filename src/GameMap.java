@@ -75,6 +75,7 @@ public class GameMap {
 			System.out.print(ground.getDisplay());
 		}
 	}
+
 	public void printLine(int firstGround,int lastGround){
 		System.out.print(map.get(firstGround).getDisplay());
 		for(int i=1;i<=27;i++)
