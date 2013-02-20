@@ -15,82 +15,81 @@ public class GameMap {
 
         groundList.clear();
 
-        for (int i = 0; i <= 69; i++) {
-            Ground ground = null;
-            if (isStartPoint(i)) {
-                ground = GroundFactory.buildStartGround();
-            } else if (isHospitalPoint(i)) {
-                ground = GroundFactory.buildHospitalGround();
-            } else if (isInAreaOne(i) || isInAreaTwo(i)) {
-                ground = GroundFactory.buildEmptyGroundWithPrice(200);
-            } else if (isToyPoint(i)) {
-                ground = GroundFactory.buildToyGround();
-            } else if (isInAreaThree(i)) {
-                ground = GroundFactory.buildEmptyGroundWithPrice(500);
-            } else if (isGiftPoint(i)) {
-                ground = GroundFactory.buildGiftGround();
-            } else if (isInAreaFour(i) || isInAreaFive(i)) {
-                ground = GroundFactory.buildEmptyGroundWithPrice(300);
-            } else if (isPrisonPoint(i)) {
-                ground = GroundFactory.buildPrisonGround();
-            }else if (isMagicPoint(i)) {
-                ground = GroundFactory.buildMagicGround();
-            } else if (isInMoneyArea(i)) {
-                ground = GroundFactory.buildMoneyGround(points[i - 64]);
-            }
-            groundList.add(ground);
-        }
+        initStartGround();
+        initAreaOne();
+        initHospitalGround();
+        initAreaTwo();
+        initToyGround();
+        intiAreaThree();
+        initGiftGround();
+        intiAreaFour();
+        initPrisonGround();
+        intiAreaFive();
+        initMagicGround();
+        initMoneyGround();
 
         return groundList;
 
     }
 
-    private boolean isInAreaFour(int i) {
-        return i > 35 && i < 49;
+    private void initToyGround() {
+        groundList.add(GroundFactory.buildToyGround());
     }
 
-    private boolean isInAreaFive(int i) {
-        return i > 49 && i < 63;
+    private void initMoneyGround() {
+        for(int i=0; i<points.length; i++){
+            groundList.add(GroundFactory.buildMoneyGround(points[i]));
+        }
     }
 
-    private boolean isInAreaThree(int i) {
-        return i > 28 && i < 35;
+    private void initMagicGround() {
+        groundList.add(GroundFactory.buildMagicGround());
     }
 
-    private boolean isInAreaOne(int i) {
-        return i > 0 && i < 14;
+    private void intiAreaFive() {
+        for (int i = 0; i < 13; i++) {
+            groundList.add(GroundFactory.buildEmptyGroundWithPrice(300));
+        }
     }
 
-    private boolean isInAreaTwo(int i) {
-        return i > 14 && i < 28;
+    private void initPrisonGround() {
+        groundList.add(GroundFactory.buildPrisonGround());
     }
 
-    private boolean isInMoneyArea(int position) {
-        return position > 63;
+    private void intiAreaFour() {
+        for (int i = 0; i < 13; i++) {
+            groundList.add(GroundFactory.buildEmptyGroundWithPrice(300));
+        }
     }
 
-    private boolean isMagicPoint(int position) {
-        return position == 63;
+    private void initGiftGround() {
+        groundList.add(GroundFactory.buildGiftGround());
     }
 
-    private boolean isPrisonPoint(int position) {
-        return position == 49;
+    private void intiAreaThree() {
+        for (int i = 0; i < 6; i++) {
+            groundList.add(GroundFactory.buildEmptyGroundWithPrice(500));
+        }
     }
 
-    private boolean isGiftPoint(int position) {
-        return position == 35;
+    private void initAreaTwo() {
+        for (int i = 0; i < 13; i++) {
+            groundList.add(GroundFactory.buildEmptyGroundWithPrice(200));
+        }
     }
 
-    private boolean isToyPoint(int position) {
-        return position == 28;
+    private void initHospitalGround() {
+        groundList.add(GroundFactory.buildHospitalGround());
     }
 
-    private boolean isHospitalPoint(int position) {
-        return position == 14;
+    private void initStartGround() {
+        groundList.add(GroundFactory.buildStartGround());
     }
 
-    private boolean isStartPoint(int position) {
-        return position == 0;
+    private void initAreaOne() {
+        for (int i = 0; i < 13; i++) {
+            groundList.add(GroundFactory.buildEmptyGroundWithPrice(200));
+        }
     }
 
     public void printMap() {
