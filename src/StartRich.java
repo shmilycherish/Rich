@@ -16,8 +16,6 @@ public class StartRich {
 	public HashMap stageProperties=new HashMap();
 	public GameMap gameMap=new GameMap();
 	public void RichStart() {
-		
-		// TODO Auto-generated method stub
 		System.out.println("欢迎开始大富翁游戏");
 		System.out.println("设置玩家初始资金，范围1000～50000（默认10000）");
 		int funds= setInitialFunds();
@@ -137,7 +135,7 @@ public class StartRich {
 		int location=gamePlayer.location;
 		Ground ground=gameMap.map.get(location);
 		if(gamePlayer.location>=64&&gamePlayer.location<=69)
-			gamePlayer.points+=ground.point;
+			gamePlayer.points+=ground.getPoint();
 		else{
 			estateOperation(gamePlayer);
 		}
@@ -146,12 +144,12 @@ public class StartRich {
 	public void estateOperation(GamePlayer gamePlayer) {
 		int location=gamePlayer.location;
 		Ground ground=gameMap.map.get(location);
-		if(ground.owners.equals("0")){
-			System.out.println("是否购买该处空地，"+ground.price+"元（Y/N）?");		
+		if(ground.getOwners().equals("0")){
+			System.out.println("是否购买该处空地，"+ground.getPrice()+"元（Y/N）?");
 			checkBuyanswer(gamePlayer);			
-		}else if(ground.owners.equals(gamePlayer.charactersType)){
-			if(gameMap.map.get(location).groundType<3){
-				System.out.println("是否升级该处地产，"+ground.price+"元（Y/N）?");				
+		}else if(ground.getOwners().equals(gamePlayer.charactersType)){
+			if(gameMap.map.get(location).getGroundType()<3){
+				System.out.println("是否升级该处地产，"+ground.getPrice()+"元（Y/N）?");
 				checkBuyanswer(gamePlayer);
 			}
 		}else{
@@ -164,9 +162,9 @@ public class StartRich {
 		// TODO Auto-generated method stub
 		String buyResult=readUserInput();
 		if(buyResult.equalsIgnoreCase("Y")){
-			if(gamePlayer.funds>=gameMap.map.get(gamePlayer.location).price){
-				gamePlayer.funds-=gameMap.map.get(gamePlayer.location).price;
-				gameMap.map.get(gamePlayer.location).owners=gamePlayer.charactersType;
+			if(gamePlayer.funds>=gameMap.map.get(gamePlayer.location).getPrice()){
+				gamePlayer.funds-=gameMap.map.get(gamePlayer.location).getPrice();
+				gameMap.map.get(gamePlayer.location).setOwners(gamePlayer.charactersType);
 			}else{
 				System.out.println("剩余资金不够");
 			}
@@ -186,7 +184,7 @@ public class StartRich {
 	private void getIntoPrison(GamePlayer gamePlayer) {
 		// TODO Auto-generated method stub
 		gamePlayer.location=49;
-		gameMap.map.get(gamePlayer.location).display=gamePlayer.display;
+		gameMap.map.get(gamePlayer.location).setDisplay(gamePlayer.display);
 		gamePlayer.status=2;
 		gamePlayer.leftdays=2;
 	}
@@ -238,12 +236,12 @@ public class StartRich {
 	private void stopInBlock(GamePlayer gamePlayer, int StagePropertylocation) {
 		// TODO Auto-generated method stub
 		gamePlayer.location=StagePropertylocation;
-		gameMap.map.get(gamePlayer.location).display=gamePlayer.display;
+		gameMap.map.get(gamePlayer.location).setDisplay(gamePlayer.display);
 	}
 
 	public void getIntoHospital(GamePlayer gamePlayer) {
 		gamePlayer.location=14;
-		gameMap.map.get(gamePlayer.location).display=gamePlayer.display;
+		gameMap.map.get(gamePlayer.location).setDisplay(gamePlayer.display);
 		gamePlayer.status=1;
 		gamePlayer.leftdays=3;
 	}
