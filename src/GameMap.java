@@ -10,7 +10,9 @@ public class GameMap {
  	public GameMap(){
  		initalizeMap();
  	}
-	public List<Ground> initalizeMap(){ 		
+	public List<Ground> initalizeMap(){
+
+        map.clear();
  		
  		for(int i=0;i<=69;i++){
  			ground=new Ground();
