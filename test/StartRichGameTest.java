@@ -20,4 +20,11 @@ public class StartRichGameTest {
         startRichGame.setFunds(14000);
         assertThat(startRichGame.getFunds(), is(14000));
     }
+
+    @Test
+    public void shouldGet14000WhenUserInputIis14000t(){
+        StartRichGame startRichGame=new StartRichGame();
+        startRichGame.getUserInuptFunds();
+        assertThat(startRichGame.getUserInuptFunds(), is(14000));
+    }
 }
