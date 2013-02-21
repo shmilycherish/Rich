@@ -45,4 +45,10 @@ public class GamePlayer {
 			this.display="J";
 		}
 	}
+	
+	public void getIntoHospital() {
+		location=14;		
+	    status=1;
+		leftdays=3;
+	}
 }
