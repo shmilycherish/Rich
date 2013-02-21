@@ -54,6 +54,13 @@ public class GameMapTest {
             @Override
             public void describeTo(Description description) {
             }
+
+            @Override
+            protected void describeMismatchSafely(Ground ground, Description mismatchDescription) {
+                String errorMessage = "The ground should be with displayName: " + s + ", price: " + price + ", and point: " + point;
+                errorMessage += "but in fact is (" + ground.getDisplay() + " " + ground.getPrice() + " " + ground.getPoint() +")";
+                mismatchDescription.appendText(errorMessage);
+            }
         };
     }
 }
