@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 import java.util.*;
 
 
@@ -81,7 +77,8 @@ public class StartRich {
 	public boolean commondAnalysis(String command,GamePlayer gamePlayer){
 		boolean commandEnd=false;
 		if(command.equals("roll")){
-			executeRoll(gamePlayer);
+			int rollResult=roll();
+			executeRoll(gamePlayer,rollResult);
 			commandEnd=true;
 		}else if(command.equals("query"))
 			query(gamePlayer);
@@ -102,16 +99,18 @@ public class StartRich {
 		System.out.println("机器娃娃"+gamePlayer.stageProperty[2]+"个。");
 	}
 
+    public int roll(){
+    	int rollResult=(int) (Math.random()*6+1);
+		return rollResult;   	
+    }
 	//todo
-	private void executeRoll(GamePlayer gamePlayer) {
-		// TODO Auto-generated method stub
-		int rollResult=(int) (Math.random()*6+1);
+	public void executeRoll(GamePlayer gamePlayer,int rollResult) {
+		// TODO Auto-generated method stub		
 		int locationBeforeRoll=gamePlayer.location;			
-		int StagePropertylocation=checkStageProperties(locationBeforeRoll,rollResult);
+		int stagePropertylocation=checkStageProperties(locationBeforeRoll,rollResult);
 		//是否有道具
-		if(StagePropertylocation>0){
-			String StagePropertyType=(String) stageProperties.get(StagePropertylocation);
-			StagePropertyPerformance(StagePropertyType,gamePlayer,StagePropertylocation);
+		if(stagePropertylocation>0){			
+			StagePropertyPerformance(stagePropertylocation,gamePlayer);
 			return;
 		}else{
 			gamePlayer.location=(gamePlayer.location+rollResult)%70;
@@ -229,19 +228,22 @@ public class StartRich {
 		}
 	}
 
-	private void StagePropertyPerformance(String stagePropertyType,GamePlayer gamePlayer, int StagePropertylocation) {
+	private void StagePropertyPerformance(int stagePropertylocation,GamePlayer gamePlayer) {
 		// TODO Auto-generated method stub
+		String stagePropertyType=(String) stageProperties.get(stagePropertylocation);
 		if(stagePropertyType.equals("bomb")){
-			getIntoHospital(gamePlayer);
+			getIntoHospital(gamePlayer);			
 		}else if(stagePropertyType.equals("block")){
-			stopInBlock(gamePlayer,StagePropertylocation);
+			stopInBlock(gamePlayer,stagePropertylocation);
 		}
+		stageProperties.remove(stagePropertylocation);
 	}
 
 	private void stopInBlock(GamePlayer gamePlayer, int StagePropertylocation) {
 		// TODO Auto-generated method stub
 		gamePlayer.location=StagePropertylocation;
 		gameMap.groundList.get(gamePlayer.location).setDisplay(gamePlayer.display);
+		//currentLocationPerformance(gamePlayer);
 	}
 
 	public void getIntoHospital(GamePlayer gamePlayer) {

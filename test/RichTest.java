@@ -59,31 +59,78 @@ public class RichTest {
     }
 
     @Test
-	public void shouldstatrMap(){
-		GameMap maps=new GameMap();
-		maps.initalizeMap();
-		maps.printMap();
+    public void shouldGetTheRightRandomNumberWhenRoll(){
+        StartRich startRich=new StartRich();
+        int result=startRich.roll();
+        boolean rollRight=false;
+        if(result>=1&&result<=6)
+        	rollRight=true;
+        assertTrue(rollRight);
+    }
+    
+    @Test
+	public void shouldGetRightResultWhenCheckStageProperties(){
+    	StartRich startRich=new StartRich();
+    	startRich.stageProperties.put(2,"bomb");
+    	startRich.stageProperties.put(3, "block");
+    	startRich.stageProperties.put(9,"block");
+    	int checkStagePropertiesResult1=startRich.checkStageProperties(0, 4);
+    	int checkStagePropertiesResult2=startRich.checkStageProperties(3, 6);
+    	int checkStagePropertiesResult3=startRich.checkStageProperties(3,3);
+    	assertThat(checkStagePropertiesResult1,is(2));
+    	assertThat(checkStagePropertiesResult2,is(9));
+    	assertThat(checkStagePropertiesResult3,is(-1));
+    }
+    
+    @Test
+   	public void shouldGetRightResultWhenMeetProp(){
+       	StartRich startRich=new StartRich();
+       	startRich.stageProperties.put(2,"bomb");
+       	startRich.stageProperties.put(3, "block");
+       	startRich.stageProperties.put(9,"block");
+       	GamePlayer gamePlayer=new GamePlayer("1",10000);
+       	gamePlayer.location=0;
+       	GamePlayer gamePlayer1=new GamePlayer("1",10000);
+       	gamePlayer1.location=0;
+       	startRich.executeRoll(gamePlayer, 4);
+    	startRich.executeRoll(gamePlayer1, 4);
+       	assertThat(gamePlayer,GamePlayerAttriAs(1,3,14));
+       	assertThat(startRich.gameMap.groundList.get(14).getDisplay(),is("Q"));
+       	assertThat(gamePlayer1,GamePlayerAttriAs(0,0,3));
+       	assertThat(startRich.gameMap.groundList.get(3).getDisplay(),is("Q"));
+       }
+    
+    private Matcher<? super GamePlayer> GamePlayerAttriAs(final int status, final int leftdays, final int location) {
+        return new TypeSafeMatcher<GamePlayer>() {
+            @Override
+            protected boolean matchesSafely(GamePlayer gamePlayer) {
+                return (gamePlayer.status==status) && (gamePlayer.leftdays==leftdays) && (gamePlayer.location==location);
+            }
+
+            @Override
+            public void describeTo(Description description) {
+            }
+        };
+    }
+    
+    @Test
+	public void shouldGetRightResultWhenPlayWalkToHospital(){
+    	StartRich startRich=new StartRich();
+    	GamePlayer gamePlayer=new GamePlayer("1",10000);
+       	gamePlayer.location=9;
+       	startRich.executeRoll(gamePlayer, 5);
+       	assertThat(gamePlayer,GamePlayerAttriAs(1,3,14));
+    	assertThat(startRich.gameMap.groundList.get(14).getDisplay(),is("Q"));
 	}
 	
-	@Test
-	public void shouldbombisexplodewhenplayer(){
-		StartRich startRich=new StartRich();
-		startRich.stageProperties.put(2, "bomb");
-		startRich.stageProperties.put(10, "bomb");
-		startRich.stageProperties.put(11, "bomb");
-		startRich.stageProperties.put(7, "block");
-		int i=startRich.checkStageProperties(1, 2);
-		int j=startRich.checkStageProperties(5,4);
-		int k=startRich.checkStageProperties(5,5);
-		int m=startRich.checkStageProperties(69,6);
-		int n=startRich.checkStageProperties(67,3);
-		assertThat(i,is(2));
-		assertThat(j,is(7));
-		assertThat(k,is(7));
-		assertThat(m,is(2));
-		assertThat(n,is(-1));
-	}
-	
+    @Test
+   	public void shouldGetRightResultWhenPlayWalkToGift(){
+       	StartRich startRich=new StartRich();
+       	GamePlayer gamePlayer=new GamePlayer("1",10000);
+          	gamePlayer.location=9;
+          	startRich.executeRoll(gamePlayer, 5);
+          	assertThat(gamePlayer,GamePlayerAttriAs(1,3,14));
+   	}
 	@Test
 	public void buyestateOperationTest(){
 		
