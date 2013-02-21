@@ -1,5 +1,6 @@
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
+import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 
@@ -12,7 +13,8 @@ import static org.hamcrest.CoreMatchers.is;
  */
 public class RichGameTest {
 
-    public void should()
+    @Test
+    public void shouldGetInitStatus()
     {
         RichGame richGame = new RichGame();
         RichGameStatus status = richGame.getStatus();

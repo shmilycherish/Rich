@@ -70,7 +70,7 @@ public class GroundFactoryTest {
 
             @Override
             protected void describeMismatchSafely(Ground ground, Description mismatchDescription) {
-                String errorMessage = "The ground should be with displayName: " + s + ", price: " + price + ", and point: " + point;
+                String errorMessage = "The ground shouldGetInitStatus be with displayName: " + s + ", price: " + price + ", and point: " + point;
                 errorMessage += "but in fact is (" + ground.getDisplay() + " " + ground.getPrice() + " " + ground.getPoint() +")";
                 mismatchDescription.appendText(errorMessage);
             }
