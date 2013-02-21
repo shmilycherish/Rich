@@ -17,9 +17,7 @@ public class StartRichGameTest {
      @Test
     public void shouldInitialFundsRightUsingUserInput(){
         StartRichGame startRichGame=new StartRichGame();
-        Iterator<String> scanner = Mockito.mock(Iterator.class);
-        Mockito.when(scanner.next()).thenReturn("14000");
-        int funds=startRichGame.setInitialFunds(scanner);
-        assertThat(funds,is(14000));
+        startRichGame.setFunds(14000);
+        assertThat(startRichGame.getFunds(), is(14000));
     }
 }
