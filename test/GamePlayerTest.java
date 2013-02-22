@@ -51,7 +51,7 @@ public class GamePlayerTest {
         gamePlayer.setLocation(68);        
         int goFoward3Steps=3;      
         gamePlayer.goFoward(goFoward3Steps);
-        assertThat(gamePlayer.getLocation(), is(2));        
+        assertThat(gamePlayer.getLocation(), is(1));
     }
     
 }
