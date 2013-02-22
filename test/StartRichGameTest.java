@@ -1,6 +1,7 @@
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -18,23 +19,29 @@ import static org.junit.Assert.assertThat;
  * To change this template use File | Settings | File Templates.
  */
 public class StartRichGameTest {
+
+    private StartRichGame startRichGame;
+
+    @Before
+    public void setUp()
+    {
+         startRichGame = new StartRichGame();
+    }
+
      @Test
     public void shouldInitialFundsRightUsingUserInput(){
-        StartRichGame startRichGame=new StartRichGame();
         startRichGame.setFunds(14000);
         assertThat(startRichGame.getFunds(), is(14000));
     }
 
     @Test
     public void shouldInitialPlayersTypesUsingUserInput(){
-        StartRichGame startRichGame=new StartRichGame();
         startRichGame.setPlayersTypes("1234");
         assertThat(startRichGame.getPlayersTypes(), is("1234"));
     }
 
     @Test
     public void shouldInitialPlayersUsingFundsAndPlayersTypes(){
-        StartRichGame startRichGame=new StartRichGame();
         startRichGame.setFunds(15000);
         startRichGame.setPlayersTypes("1234");
         HashMap gamePlayers=startRichGame.InitialPlayers(startRichGame.getFunds(),startRichGame.getPlayersTypes());
