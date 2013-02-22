@@ -19,7 +19,7 @@ public class GamePlayer {
 
 
 	public void setLocation(int location) {
-        this.location = location%69;
+        this.location = location%70;
 	}
 
 
