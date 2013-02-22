@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -13,20 +14,27 @@ import static org.junit.Assert.assertTrue;
  * To change this template use File | Settings | File Templates.
  */
 public class PropTest {
+
+    private Prop prop;
+
+    @Before
+    public void init()
+    {
+        prop = new Prop();
+    }
+
     @Test
     public void addPropTest(){
-        Prop prop=new Prop();
         int propLocation=2;
         int propType =1;
-        boolean placedPropResult=prop.placedProp(propLocation,propType);
-        boolean anotherPlacedPropResult=prop.placedProp(propLocation,propType);
+        boolean placedPropResult= prop.placedProp(propLocation, propType);
+        boolean anotherPlacedPropResult= prop.placedProp(propLocation, propType);
         assertTrue(placedPropResult);
         assertFalse(anotherPlacedPropResult);
     }
 
     @Test
     public void removePropTest(){
-        Prop prop=new Prop();
         prop.placedProp(11,1);
         prop.placedProp(13,3);
         prop.placedProp(20,3);
@@ -39,7 +47,6 @@ public class PropTest {
     }
     @Test
     public void removePropTestWhenRemoveCoverStartingPoint(){
-        Prop prop=new Prop();
         prop.placedProp(69,1);
         prop.placedProp(0,3);
         prop.placedProp(7,3);
