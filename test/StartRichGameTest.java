@@ -48,7 +48,7 @@ public class StartRichGameTest {
         return new TypeSafeMatcher<GamePlayer>() {
             @Override
             protected boolean matchesSafely(GamePlayer gamePlayer) {
-                return gamePlayer.display.equals(display) && (gamePlayer.funds==funds) && gamePlayer.charactersType.equals(charactersType);
+                return gamePlayer.getDisplay().equals(display) && (gamePlayer.funds==funds) && gamePlayer.getCharactersType().equals(charactersType);
             }
 
             @Override

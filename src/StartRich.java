@@ -60,7 +60,7 @@ public class StartRich {
 			start=start%4;			
 			gamePlayer=(GamePlayer) gamePlayers.get(charactersTypes.substring(start, start+1));
 			checkPlayerstatus(gamePlayer);
-			System.out.print(gamePlayer.charactersName+">");
+			System.out.print(gamePlayer.getCharactersName()+">");
 			boolean commandEnd=false;
 			while(!commandEnd){
 				String command=readUserInput(new Scanner(System.in));
@@ -151,7 +151,7 @@ public class StartRich {
 		if(ground.getOwners().equals("0")){
 			System.out.println("是否购买该处空地，"+ground.getPrice()+"元（Y/N）?");
 			checkBuyanswer(gamePlayer);			
-		}else if(ground.getOwners().equals(gamePlayer.charactersType)){
+		}else if(ground.getOwners().equals(gamePlayer.getCharactersType())){
 			if(gameMap.groundList.get(location).getGroundType()<3){
 				System.out.println("是否升级该处地产，"+ground.getPrice()+"元（Y/N）?");
 				checkBuyanswer(gamePlayer);
@@ -168,7 +168,7 @@ public class StartRich {
 		if(buyResult.equalsIgnoreCase("Y")){
 			if(gamePlayer.funds>=gameMap.groundList.get(gamePlayer.location).getPrice()){
 				gamePlayer.funds-=gameMap.groundList.get(gamePlayer.location).getPrice();
-				gameMap.groundList.get(gamePlayer.location).setOwners(gamePlayer.charactersType);
+				gameMap.groundList.get(gamePlayer.location).setOwners(gamePlayer.getCharactersType());
 			}else{
 				System.out.println("剩余资金不够");
 			}
@@ -188,7 +188,7 @@ public class StartRich {
 	private void getIntoPrison(GamePlayer gamePlayer) {
 		// TODO Auto-generated method stub
 		gamePlayer.location=49;
-		gameMap.groundList.get(gamePlayer.location).setDisplay(gamePlayer.display);
+		gameMap.groundList.get(gamePlayer.location).setDisplay(gamePlayer.getDisplay());
 		gamePlayer.status=2;
 		gamePlayer.leftdays=2;
 	}
@@ -242,13 +242,13 @@ public class StartRich {
 	private void stopInBlock(GamePlayer gamePlayer, int StagePropertylocation) {
 		// TODO Auto-generated method stub
 		gamePlayer.location=StagePropertylocation;
-		gameMap.groundList.get(gamePlayer.location).setDisplay(gamePlayer.display);
+		gameMap.groundList.get(gamePlayer.location).setDisplay(gamePlayer.getDisplay());
 		//currentLocationPerformance(gamePlayer);
 	}
 
 	public void getIntoHospital(GamePlayer gamePlayer) {
 		gamePlayer.location=14;
-		gameMap.groundList.get(gamePlayer.location).setDisplay(gamePlayer.display);
+		gameMap.groundList.get(gamePlayer.location).setDisplay(gamePlayer.getDisplay());
 		gamePlayer.status=1;
 		gamePlayer.leftdays=3;
 	}

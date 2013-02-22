@@ -1,8 +1,8 @@
 
 public class GamePlayer {
-	public String charactersType;
-	public String charactersName;
-	public String display="";
+	private String charactersType;
+	private String charactersName;
+	private String display="";
 	public int status=0;//1为医院，2为监狱
 	public int funds=0;
 	public int points=0;
@@ -11,6 +11,38 @@ public class GamePlayer {
 	public int location=0;
 	public int leftdays=0;//扣留或住院剩余天数
 	public int MascotLeftDays=0;//福神在身剩余天数
+	
+	
+	public String getCharactersType() {
+		return charactersType;
+	}
+
+
+	private void setCharactersType(String charactersType) {
+		this.charactersType = charactersType;
+	}
+
+
+	public String getCharactersName() {
+		return charactersName;
+	}
+
+
+	private void setCharactersName(String charactersName) {
+		this.charactersName = charactersName;
+	}
+
+
+	public String getDisplay() {
+		return display;
+	}
+
+
+	private void setDisplay(String display) {
+		this.display = display;
+	}
+
+
 	public int getFunds() {
 		return funds;
 	}
@@ -21,7 +53,7 @@ public class GamePlayer {
 	}
 
 	public GamePlayer(String charactersType,int funds){
-		this.charactersType=charactersType;
+		setCharactersType(charactersType);
 		InitializeCharacters(charactersType);
 		setFunds(funds);
 	}
@@ -29,21 +61,25 @@ public class GamePlayer {
 	private void InitializeCharacters(String charactersType){
 		
 		if(charactersType.equals("1")){			
-			this.charactersName="钱夫人";
-			this.display="Q";
+			setCharactersName("钱夫人");
+			setDisplay("Q");
 		}
 		else if(charactersType.equals("2")){		
-			this.charactersName="阿土伯";
-			this.display="A";
+			setCharactersName("阿土伯");
+			setDisplay("A");			
 		}
 		else if(charactersType.equals("3")){			
-			this.charactersName="孙小美";
-			this.display="S";
+			setCharactersName("孙小美");
+			setDisplay("S");
 		}	
 		else if(charactersType.equals("4")){			
-			this.charactersName="金贝贝";
-			this.display="J";
+			setCharactersName("金贝贝");
+			setDisplay("J");
 		}
+	}
+	
+	public int dice(){
+		return (int) (Math.random()*6+1);		 	
 	}
 	
 	public void getIntoHospital() {
