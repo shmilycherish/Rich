@@ -106,14 +106,14 @@ public class StartRich {
 	//todo
 	public void executeRoll(GamePlayer gamePlayer,int rollResult) {
 		// TODO Auto-generated method stub		
-		int locationBeforeRoll=gamePlayer.location;			
+		int locationBeforeRoll=gamePlayer.getLocation();			
 		int stagePropertylocation=checkStageProperties(locationBeforeRoll,rollResult);
 		//是否有道具
 		if(stagePropertylocation>0){			
 			StagePropertyPerformance(stagePropertylocation,gamePlayer);
 			return;
 		}else{
-			gamePlayer.location=(gamePlayer.location+rollResult)%70;
+			gamePlayer.setLocation((gamePlayer.getLocation()+rollResult)%70);
 			currentLocationPerformance(gamePlayer);
 		}
 		
@@ -122,7 +122,7 @@ public class StartRich {
 
 	private void currentLocationPerformance(GamePlayer gamePlayer) {
 		// TODO Auto-generated method stub
-		switch(gamePlayer.location){
+		switch(gamePlayer.getLocation()){
 			case 14:getIntoHospital(gamePlayer);break;
 			case 28:buyStageProperty(gamePlayer);break;
 			case 35:chooseGift(gamePlayer);break;
@@ -136,9 +136,9 @@ public class StartRich {
 
 	private void otherLocationPerformance(GamePlayer gamePlayer) {
 		// TODO Auto-generated method stub
-		int location=gamePlayer.location;
+		int location=gamePlayer.getLocation();
 		Ground ground=gameMap.groundList.get(location);
-		if(gamePlayer.location>=64&&gamePlayer.location<=69)
+		if(gamePlayer.getLocation()>=64&&gamePlayer.getLocation()<=69)
 			gamePlayer.points+=ground.getPoint();
 		else{
 			estateOperation(gamePlayer);
@@ -146,7 +146,7 @@ public class StartRich {
 	}
 
 	public void estateOperation(GamePlayer gamePlayer) {
-		int location=gamePlayer.location;
+		int location=gamePlayer.getLocation();
 		Ground ground=gameMap.groundList.get(location);
 		if(ground.getOwners().equals("0")){
 			System.out.println("是否购买该处空地，"+ground.getPrice()+"元（Y/N）?");
@@ -166,9 +166,9 @@ public class StartRich {
 		// TODO Auto-generated method stub
 		String buyResult=readUserInput(new Scanner(System.in));
 		if(buyResult.equalsIgnoreCase("Y")){
-			if(gamePlayer.funds>=gameMap.groundList.get(gamePlayer.location).getPrice()){
-				gamePlayer.funds-=gameMap.groundList.get(gamePlayer.location).getPrice();
-				gameMap.groundList.get(gamePlayer.location).setOwners(gamePlayer.getCharactersType());
+			if(gamePlayer.funds>=gameMap.groundList.get(gamePlayer.getLocation()).getPrice()){
+				gamePlayer.funds-=gameMap.groundList.get(gamePlayer.getLocation()).getPrice();
+				gameMap.groundList.get(gamePlayer.getLocation()).setOwners(gamePlayer.getCharactersType());
 			}else{
 				System.out.println("剩余资金不够");
 			}
@@ -187,8 +187,8 @@ public class StartRich {
 
 	private void getIntoPrison(GamePlayer gamePlayer) {
 		// TODO Auto-generated method stub
-		gamePlayer.location=49;
-		gameMap.groundList.get(gamePlayer.location).setDisplay(gamePlayer.getDisplay());
+		gamePlayer.setLocation(49);
+		gameMap.groundList.get(gamePlayer.getLocation()).setDisplay(gamePlayer.getDisplay());
 		gamePlayer.status=2;
 		gamePlayer.leftdays=2;
 	}
@@ -241,14 +241,14 @@ public class StartRich {
 
 	private void stopInBlock(GamePlayer gamePlayer, int StagePropertylocation) {
 		// TODO Auto-generated method stub
-		gamePlayer.location=StagePropertylocation;
-		gameMap.groundList.get(gamePlayer.location).setDisplay(gamePlayer.getDisplay());
+		gamePlayer.setLocation(StagePropertylocation);
+		gameMap.groundList.get(gamePlayer.getLocation()).setDisplay(gamePlayer.getDisplay());
 		//currentLocationPerformance(gamePlayer);
 	}
 
 	public void getIntoHospital(GamePlayer gamePlayer) {
-		gamePlayer.location=14;
-		gameMap.groundList.get(gamePlayer.location).setDisplay(gamePlayer.getDisplay());
+		gamePlayer.setLocation(14);
+		gameMap.groundList.get(gamePlayer.getLocation()).setDisplay(gamePlayer.getDisplay());
 		gamePlayer.status=1;
 		gamePlayer.leftdays=3;
 	}

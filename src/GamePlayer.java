@@ -8,11 +8,21 @@ public class GamePlayer {
 	public int points=0;
 	public int[] landedProperty={0,0,0,0};//空地x处；茅屋x处；洋房y处；摩天楼z处
 	public int[] stageProperty={0,0,0};//路障 x个；炸弹y个；机器娃娃z个
-	public int location=0;
+	private int location=0;
 	public int leftdays=0;//扣留或住院剩余天数
 	public int MascotLeftDays=0;//福神在身剩余天数
 	
 	
+	public int getLocation() {
+		return location;
+	}
+
+
+	public void setLocation(int location) {
+        this.location = location%69;
+	}
+
+
 	public String getCharactersType() {
 		return charactersType;
 	}
@@ -82,9 +92,17 @@ public class GamePlayer {
 		return (int) (Math.random()*6+1);		 	
 	}
 	
+	
+	
 	public void getIntoHospital() {
 		location=14;		
 	    status=1;
 		leftdays=3;
+	}
+
+
+	public void goFoward(int Steps) {
+		// TODO Auto-generated method stub
+		setLocation(getLocation()+Steps);
 	}
 }

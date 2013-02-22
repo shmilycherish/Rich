@@ -89,9 +89,9 @@ public class RichTest {
        	startRich.stageProperties.put(3, "block");
        	startRich.stageProperties.put(9,"block");
        	GamePlayer gamePlayer=new GamePlayer("1",10000);
-       	gamePlayer.location=0;
+       	gamePlayer.setLocation(0);
        	GamePlayer gamePlayer1=new GamePlayer("1",10000);
-       	gamePlayer1.location=0;
+       	gamePlayer1.setLocation(0);
        	startRich.executeRoll(gamePlayer, 4);
     	startRich.executeRoll(gamePlayer1, 4);
        	assertThat(gamePlayer,GamePlayerAttriAs(1,3,14));
@@ -104,7 +104,7 @@ public class RichTest {
         return new TypeSafeMatcher<GamePlayer>() {
             @Override
             protected boolean matchesSafely(GamePlayer gamePlayer) {
-                return (gamePlayer.status==status) && (gamePlayer.leftdays==leftdays) && (gamePlayer.location==location);
+                return (gamePlayer.status==status) && (gamePlayer.leftdays==leftdays) && (gamePlayer.getLocation()==location);
             }
 
             @Override
@@ -117,7 +117,7 @@ public class RichTest {
 	public void shouldGetRightResultWhenPlayWalkToHospital(){
     	StartRich startRich=new StartRich();
     	GamePlayer gamePlayer=new GamePlayer("1",10000);
-       	gamePlayer.location=9;
+       	gamePlayer.setLocation(9);
        	startRich.executeRoll(gamePlayer, 5);
        	assertThat(gamePlayer,GamePlayerAttriAs(1,3,14));
     	assertThat(startRich.gameMap.groundList.get(14).getDisplay(),is("Q"));
@@ -127,7 +127,7 @@ public class RichTest {
    	public void shouldGetRightResultWhenPlayWalkToGift(){
        	StartRich startRich=new StartRich();
        	GamePlayer gamePlayer=new GamePlayer("1",10000);
-          	gamePlayer.location=9;
+          	gamePlayer.setLocation(9);
           	startRich.executeRoll(gamePlayer, 5);
           	assertThat(gamePlayer,GamePlayerAttriAs(1,3,14));
    	}

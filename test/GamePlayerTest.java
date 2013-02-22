@@ -32,4 +32,26 @@ public class GamePlayerTest {
     private  boolean isBetween1And6(int diceResult){
          return  diceResult>=1&&diceResult<=6;
     }
+
+    @Test
+    public void shouldPlayerGoToTheRightLocationAfterDiceWhenPlayerNotWalkBeyondMapLimition(){
+        GamePlayer gamePlayer=new GamePlayer("1",10000);
+        gamePlayer.setLocation(10);        
+        int goFoward3Steps=3;      
+        gamePlayer.goFoward(goFoward3Steps);
+        GamePlayer aotherGamePlayer=new GamePlayer("1",10000);
+        aotherGamePlayer.setLocation(68);
+        
+        assertThat(gamePlayer.getLocation(), is(13));
+        
+    }
+    @Test
+    public void shouldPlayerGoToTheRightLocationAfterDiceWhenPlayerWalkOutOfMap(){
+        GamePlayer gamePlayer=new GamePlayer("1",10000);
+        gamePlayer.setLocation(68);        
+        int goFoward3Steps=3;      
+        gamePlayer.goFoward(goFoward3Steps);
+        assertThat(gamePlayer.getLocation(), is(2));        
+    }
+    
 }
