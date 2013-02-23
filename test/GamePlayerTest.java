@@ -4,13 +4,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created with IntelliJ IDEA.
- * User: shmilyhoney
- * Date: 13-2-22
- * Time: 下午2:48
- * To change this template use File | Settings | File Templates.
- */
 public class GamePlayerTest {
     @Test
     public void shouldInitialPlayerRight(){
