@@ -64,11 +64,11 @@ public class GamePlayer {
 
 	public GamePlayer(String charactersType,int funds){
 		setCharactersType(charactersType);
-		InitializeCharacters(charactersType);
+		initializeCharacters(charactersType);
 		setFunds(funds);
 	}
 	
-	private void InitializeCharacters(String charactersType){
+	private void initializeCharacters(String charactersType){
 		
 		if(charactersType.equals("1")){			
 			setCharactersName("钱夫人");
@@ -102,7 +102,6 @@ public class GamePlayer {
 
 
 	public void goFoward(int Steps) {
-		// TODO Auto-generated method stub
 		setLocation(getLocation()+Steps);
 	}
 }
