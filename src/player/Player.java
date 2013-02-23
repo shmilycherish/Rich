@@ -24,6 +24,9 @@ public abstract class Player {
     {
          return funds;
     }
+    public void setFunds(int funds){
+        this.funds=funds ;
+    }
 
     public abstract String getDisplayName();
 

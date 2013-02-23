@@ -15,17 +15,27 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class StringConvert {
+
+    public static final String FUNDS_SHOULD_BE_A_NUMBER = "Should be a number";
+    public static final String Funds_SHOULD_NOT_EXCEED_THE_MAXIMUM = "Should not exceed the maximum";
+    public static final String FUNDS_SHOULD_NOT_UNDER_THE_MINIMUM = "Funds Should not under the minimum";
+    public static final String PLAYERS_NUMBER_SHOULD_BE_OVER_2 = "players number should be over 2";
+    public static final String PLAYERS_NUMBER_SHOULD_BE_UNDER_5 = "players number should be under 5";
+    public static final String PLAYERS_NUMBER_SHOULD_NOT_BE_REPEAT = "players number should not be repeat";
+    public static final String PLAY_TYPE_SHOULD_BE_1_OR_2_OR_3_OR_4 = "play type should be 1 or 2 or 3 or 4";
+
+
     public Integer convertFunds(String s) {
         int funds;
         try{
             funds = Integer.parseInt(s);
         } catch (Exception e) {
-            throw new InvalidParameterException("Should be a number");
+            throw new InvalidParameterException(FUNDS_SHOULD_BE_A_NUMBER);
         }
         if(funds>50000){
-            throw  new InvalidParameterException("Should not exceed the maximum");
+            throw  new InvalidParameterException(Funds_SHOULD_NOT_EXCEED_THE_MAXIMUM);
         }  else if(funds<1000)  {
-            throw  new InvalidParameterException("Should not under the minimum");
+            throw  new InvalidParameterException(FUNDS_SHOULD_NOT_UNDER_THE_MINIMUM);
         }
 
         return funds;
@@ -34,12 +44,12 @@ public class StringConvert {
     public List<Player> convertPlayers(String playersInformation) {
         List<Player>   players=new ArrayList<Player>() ;
         if(playersInformation.length()<2) {
-            throw new InvalidParameterException("players number should be over 2");
+            throw new InvalidParameterException(PLAYERS_NUMBER_SHOULD_BE_OVER_2);
         } else if(playersInformation.length()>4){
-            throw new InvalidParameterException("players number should be under 5");
+            throw new InvalidParameterException(PLAYERS_NUMBER_SHOULD_BE_UNDER_5);
         }
         if(hasRepeatPlayersType(playersInformation)) {
-            throw new InvalidParameterException("players number should not be repeat");
+            throw new InvalidParameterException(PLAYERS_NUMBER_SHOULD_NOT_BE_REPEAT);
         }
         for(int i=0;i<playersInformation.length();i++) {
             char playerType=playersInformation.charAt(i);
@@ -48,7 +58,7 @@ public class StringConvert {
             case'2': players.add(new ATuBoPlayer());  break;
             case'3': players.add(new SunMeiMeiPlayer());  break;
             case'4': players.add(new JinBaoBeiPlayer());  break;
-            default:throw  new InvalidParameterException("play type should be 1 or 2 or 3 or 4");
+            default:throw  new InvalidParameterException(PLAY_TYPE_SHOULD_BE_1_OR_2_OR_3_OR_4);
             }
         }
         return players;

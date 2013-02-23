@@ -18,10 +18,6 @@ public class RichGame {
         this.funds=funds;
 	}
 
-	public void setPlayersTypes(String playersTypes) {
-		this.playersTypes=playersTypes;
-	}
-
 	public String getPlayersTypes() {
 		return playersTypes;
 	}
