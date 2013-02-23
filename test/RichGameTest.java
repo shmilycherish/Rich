@@ -39,7 +39,7 @@ public class RichGameTest {
     public void shouldGetDefaultFundsWhenNotSetAmount() throws Exception {
         assertThat(richGame.getFunds(), is(10000));
     }
-
+    /**
     @Test
     public void shouldGetExceptionWhenFundsExceedMaximum(){
         boolean gotEcxception = false;
@@ -61,7 +61,7 @@ public class RichGameTest {
         }
         assertThat(gotEcxception, is(true));
     }
-
+     **/
     @Test
     public void shouldInitialPlayersRight(){
          List<Player> playerList = new ArrayList<Player>();
