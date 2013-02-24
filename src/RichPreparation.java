@@ -1,9 +1,8 @@
 import convertor.StringConvert;
 import player.Player;
+import sun.rmi.runtime.NewThreadAction;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,12 +13,6 @@ import java.util.Scanner;
  */
 public class RichPreparation {
     private RichGame richGame=new RichGame();
-    public void preparedFunds(Iterator<String> scanner) {
-        String userInput=scanner.next();
-        StringConvert stringConvert=new StringConvert();
-        int funds=stringConvert.convertFunds(userInput);
-        richGame.setFunds(funds);
-    }
 
     private StringConvert stringConvert;
     private UserInput userInput;
@@ -29,16 +22,37 @@ public class RichPreparation {
               this.userInput = userInput;
               stringConvert=new StringConvert();
     }
+     public void prepareRichGame(){
+         prepareInteractiveData();
+         prepareGameMap();
+         prepareProps();
+     }
+
+    private void prepareProps() {
+        richGame.setProps(new HashMap());
+    }
+
+    private void prepareGameMap() {
+        richGame.setGameMap(new GameMap());
+    }
 
     public void prepareInteractiveData()
     {
         initFunds();
-        List<Player> playerList = initPlayers();
+        List<Player> playerList = initPlayers(richGame.getFunds());
     }
 
-    private List<Player> initPlayers() {
-
-        return null;
+    private List<Player> initPlayers(int funds) {
+        List<Player> players=new ArrayList<Player>();
+        while(players.isEmpty()) {
+             try{
+                 players= stringConvert.convertPlayers(userInput.readUserInput()) ;
+             } catch (Exception e)  {
+                 userInput.printMessage(e.getMessage());
+             }
+        }
+        richGame.initialPlayers(players);
+        return players;
     }
 
     private void initFunds() {

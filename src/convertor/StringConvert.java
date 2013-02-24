@@ -24,21 +24,20 @@ public class StringConvert {
     public static final String PLAYERS_NUMBER_SHOULD_NOT_BE_REPEAT = "players number should not be repeat";
     public static final String PLAY_TYPE_SHOULD_BE_1_OR_2_OR_3_OR_4 = "play type should be 1 or 2 or 3 or 4";
 
-
+    private int initalFunds;
     public Integer convertFunds(String s) {
-        int funds;
         try{
-            funds = Integer.parseInt(s);
+            initalFunds = Integer.parseInt(s);
         } catch (Exception e) {
             throw new InvalidParameterException(FUNDS_SHOULD_BE_A_NUMBER);
         }
-        if(funds>50000){
+        if(initalFunds>50000){
             throw  new InvalidParameterException(Funds_SHOULD_NOT_EXCEED_THE_MAXIMUM);
-        }  else if(funds<1000)  {
+        }  else if(initalFunds<1000)  {
             throw  new InvalidParameterException(FUNDS_SHOULD_NOT_UNDER_THE_MINIMUM);
         }
 
-        return funds;
+        return initalFunds;
     }
 
     public List<Player> convertPlayers(String playersInformation) {
@@ -54,10 +53,10 @@ public class StringConvert {
         for(int i=0;i<playersInformation.length();i++) {
             char playerType=playersInformation.charAt(i);
             switch(playerType) {
-            case'1': players.add(new QianfurenPlayer());  break;
-            case'2': players.add(new ATuBoPlayer());  break;
-            case'3': players.add(new SunMeiMeiPlayer());  break;
-            case'4': players.add(new JinBaoBeiPlayer());  break;
+            case'1': players.add(new QianfurenPlayer(initalFunds));  break;
+            case'2': players.add(new ATuBoPlayer(initalFunds));  break;
+            case'3': players.add(new SunMeiMeiPlayer(initalFunds));  break;
+            case'4': players.add(new JinBaoBeiPlayer(initalFunds));  break;
             default:throw  new InvalidParameterException(PLAY_TYPE_SHOULD_BE_1_OR_2_OR_3_OR_4);
             }
         }
@@ -76,4 +75,6 @@ public class StringConvert {
             }
             return false;
     }
+
+
 }
