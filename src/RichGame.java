@@ -48,4 +48,7 @@ public class RichGame {
     public HashMap getProps() {
         return props;
     }
+
+
+
 }

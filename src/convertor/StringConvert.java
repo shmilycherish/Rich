@@ -1,11 +1,15 @@
 package convertor;
 
+import Command.CommandInformation;
+import Command.CommandType;
 import player.*;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,6 +29,10 @@ public class StringConvert {
     public static final String PLAY_TYPE_SHOULD_BE_1_OR_2_OR_3_OR_4 = "play type should be 1 or 2 or 3 or 4";
 
     private int initalFunds;
+    private String blockRegx = "block -?([1-9]{1}|10)";
+    private String bombRegx = "bomb -?([1-9]{1}|10)";
+    private String sellRegx ="sell ([0-9]{1}|[1-6]{1}[0-9]{1})";
+    private String sellToolRegx ="selltool (1|2|3)";
     public Integer convertFunds(String s) {
         try{
             initalFunds = Integer.parseInt(s);
@@ -77,4 +85,83 @@ public class StringConvert {
     }
 
 
+    public CommandInformation convertCommand(String command) {
+        command=command.toLowerCase() ;
+        if(isQuery(command)) {
+            return new CommandInformation(CommandType.QUERY);
+        }else if(isRoll(command)){
+            return new CommandInformation(CommandType.ROLL);
+        }else if(isRobot(command)) {
+            return new CommandInformation(CommandType.ROBOT);
+        } else if (isHelp(command)) {
+            return new CommandInformation(CommandType.HELP);
+        } else if (isQuit(command)) {
+            return new CommandInformation(CommandType.QUIT);
+        } else if(isBlock(command)) {
+            return new CommandInformation(CommandType.BLOCK,Distance(command, "block "));
+        } else if(isBomb(command)) {
+            return new CommandInformation(CommandType.BOMB,Distance(command, "bomb "));
+        } else if(isSell(command)) {
+            return new CommandInformation(CommandType.SELL,Distance(command,"sell "));
+        }  else if(isSellTool(command)) {
+            return new CommandInformation(CommandType.SELL,Distance(command,"selltool "));
+        }
+        return null;
+    }
+
+    private boolean isSellTool(String command) {
+        Matcher matcher = getMatcher(command, sellToolRegx);
+        return  matcher.matches();
+    }
+
+    private boolean isSell(String command) {
+        Matcher matcher = getMatcher(command, sellRegx);
+        return  matcher.matches();
+    }
+
+    private boolean isBomb(String command) {
+        Matcher matcher = getMatcher(command, bombRegx);
+        return  matcher.matches();
+    }
+
+    private int Distance(String command,String commandType) {
+       String distance=command.replaceAll(commandType,"");
+       int  blockDistance =Integer.parseInt(distance) ;
+       return  blockDistance;
+    }
+
+    private boolean isBlock(String command) {
+        Matcher matcher = getMatcher(command, blockRegx);
+        return  matcher.matches();
+    }
+
+    private Matcher getMatcher(String command, String regx) {
+        Pattern pattern=Pattern.compile(regx);
+        return pattern.matcher(command);
+    }
+
+    private boolean isQuit(String command) {
+        return command.equals("quit");
+    }
+
+    private boolean isHelp(String command) {
+        return command.equals("help");
+    }
+
+    private boolean isRobot(String command) {
+        return command.equals("robot");
+    }
+
+    private boolean isRoll(String command) {
+        return command.equals("roll");
+    }
+
+    private boolean isQuery(String command) {
+        return command.equals("query");
+    }
+
+    private class CommandException extends Throwable {
+        public CommandException(String s) {
+        }
+    }
 }

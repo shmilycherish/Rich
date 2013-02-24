@@ -1,5 +1,7 @@
 package convertor;
 
+import Command.CommandInformation;
+import Command.CommandType;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -149,7 +151,110 @@ public class StringConvertTest {
     }
 
     @Test
-    public void shouldGetRightCommand(){
+     public void shouldRightCommandInformationWhenCommandIsQuery(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("query") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.QUERY));
+    }
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsQueryAndHasUpperChar(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("quEry") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.QUERY));
+    }
 
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsRoll(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("roll") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.ROLL));
+    }
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsRollAndHasUpperChar(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("RoLL") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.ROLL));
+    }
+
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsRobot(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("robot") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.ROBOT));
+    }
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsRobotAndHasUpperChar(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("RoBot") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.ROBOT));
+    }
+
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsHelp(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("help") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.HELP));
+    }
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsHelpAndHasUpperChar(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("HelP") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.HELP));
+    }
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsQuit(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("quit") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.QUIT));
+    }
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsQuitAndHasUpperChar(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("QUit") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.QUIT));
+    }
+    @Test
+     public void shouldRightCommandInformationWhenCommandIsBlock(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("block 8") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.BLOCK));
+        assertThat(commandInformation.getArg(),is(8));
+    }
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsBlockAndHasUpperChar(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("blOCk -8") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.BLOCK));
+        assertThat(commandInformation.getArg(),is(-8));
+    }
+
+    @Test
+      public void shouldRightCommandInformationWhenCommandIsBomb(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("bomb 10") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.BOMB));
+        assertThat(commandInformation.getArg(),is(10));
+    }
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsBombAndHasUpperChar(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("boMB -10") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.BOMB));
+        assertThat(commandInformation.getArg(),is(-10));
+    }
+
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsSell(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("sell 0") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.SELL));
+        assertThat(commandInformation.getArg(),is(0));
+    }
+    @Test
+    public void shouldRightCommandInformationWhenCommandIsSellAndHasUpperChar(){
+        StringConvert stringConvert = new StringConvert();
+        CommandInformation commandInformation =stringConvert.convertCommand("sEll 40") ;
+        assertThat(commandInformation.getCommandType(),is(CommandType.SELL));
+        assertThat(commandInformation.getArg(),is(40));
     }
 }
