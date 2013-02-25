@@ -1,3 +1,5 @@
+import Game.GamePlayer;
+import Game.StartRich;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -95,9 +97,9 @@ public class RichTest {
        	startRich.executeRoll(gamePlayer, 4);
     	startRich.executeRoll(gamePlayer1, 4);
        	assertThat(gamePlayer,GamePlayerAttriAs(1,3,14));
-       	assertThat(startRich.gameMap.groundList.get(14).getDisplay(),is("Q"));
+       	assertThat(startRich.gameMap.getGroundList().get(14).getDisplay(),is("Q"));
        	assertThat(gamePlayer1,GamePlayerAttriAs(0,0,3));
-       	assertThat(startRich.gameMap.groundList.get(3).getDisplay(),is("Q"));
+       	assertThat(startRich.gameMap.getGroundList().get(3).getDisplay(),is("Q"));
        }
     
     private Matcher<? super GamePlayer> GamePlayerAttriAs(final int status, final int leftdays, final int location) {
@@ -120,7 +122,7 @@ public class RichTest {
        	gamePlayer.setLocation(9);
        	startRich.executeRoll(gamePlayer, 5);
        	assertThat(gamePlayer,GamePlayerAttriAs(1,3,14));
-    	assertThat(startRich.gameMap.groundList.get(14).getDisplay(),is("Q"));
+    	assertThat(startRich.gameMap.getGroundList().get(14).getDisplay(),is("Q"));
 	}
 	
     @Test

@@ -1,3 +1,5 @@
+import Game.RichPreparation;
+import Game.UserInput;
 import convertor.StringConvert;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -5,9 +7,6 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Test;
 import org.mockito.Mockito;
 import player.Player;
-
-import java.util.Iterator;
-import java.util.Scanner;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -119,7 +118,7 @@ public class RichPreparationTest {
         assertThat(richPreparation.getRichGame().getPlayers().get(0), isPlayerAs("Q",1000)) ;
         assertThat(richPreparation.getRichGame().getPlayers().get(1), isPlayerAs("S",1000)) ;
         assertThat(richPreparation.getRichGame().getPlayers().get(2), isPlayerAs("A",1000)) ;
-        assertThat(richPreparation.getRichGame().getGameMap().groundList.size(),is(70));
+        assertThat(richPreparation.getRichGame().getGameMap().getGroundList().size(),is(70));
         assertTrue(richPreparation.getRichGame().getProps().isEmpty());
     }
 

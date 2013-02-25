@@ -1,12 +1,9 @@
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
+import Game.RichGame;
 import org.junit.Before;
 import org.junit.Test;
 import player.Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;

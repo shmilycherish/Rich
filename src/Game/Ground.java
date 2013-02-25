@@ -1,17 +1,18 @@
+package Game;
 
-public class Ground {	
+public class Ground {
     private String groundName="0";
 	private int groundType=0;
 	private int price=0;
 	private int point=0;
 	private String owners="0";//0wei
-	private String display="0";
-	
-	
+    private String display="0";
+    private boolean isSystemLand=false;
 	public void initalizeGround(String groundName){
-		this.groundName=groundName;
-		this.display=groundName;
-	}
+        this.groundName=groundName;
+        this.display=groundName;
+    }
+
 	
 	public String getOwners() {
 		return owners;
@@ -51,4 +52,17 @@ public class Ground {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+
+    public boolean getIsSystemLand() {
+        return isSystemLand;
+    }
+
+    public void setIsSystemLand(boolean systemLand) {
+        isSystemLand = systemLand;
+    }
+
+    public boolean isOwnerOfThePlayer(String owner)  {
+        return this.owners.equals(owner);
+    }
+
 }

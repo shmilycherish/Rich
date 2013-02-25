@@ -1,4 +1,8 @@
-import player.Player;
+package Game;
+
+import Game.RichGame;
+import Game.RichPreparation;
+import Game.UserInput;
 
 /**
  * Created with IntelliJ IDEA.

@@ -10,7 +10,10 @@ package player;
 public abstract class Player {
 
     private int funds;
-
+    private int points ;
+    private int[] landedProperty={0,0,0,0};
+    private int[] props={0,0,0} ;
+    private int locaion=0;
     public Player()
     {
         this.funds = 10000;
@@ -31,4 +34,45 @@ public abstract class Player {
     public abstract String getDisplayName();
 
     public abstract String getCharacterName();
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public int[] getLandedProperty() {
+        return landedProperty;
+    }
+
+    public void setLandedProperty(int[] landedProperty) {
+        this.landedProperty = landedProperty;
+    }
+
+    public int[] getProps() {
+        return props;
+    }
+
+    public void setProps(int[] props) {
+        this.props = props;
+    }
+
+    public int getLocaion() {
+        return locaion;
+    }
+
+    public void setLocaion(int locaion) {
+        this.locaion = locaion;
+    }
+
+    public  boolean haveProp(int propType){
+        if(props[propType-1]>0) {
+            return true;
+         }
+        return false;
+    }
+
+
 }

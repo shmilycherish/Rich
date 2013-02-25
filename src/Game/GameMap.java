@@ -1,9 +1,11 @@
+package Game;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class GameMap {
-    public List<Ground> groundList = new ArrayList<Ground>();
+    private List<Ground> groundList = new ArrayList<Ground>();
     private int[] points = {20, 80, 100, 40, 80, 60};
     private String groundOwner = "0";
 
@@ -30,6 +32,10 @@ public class GameMap {
 
         return groundList;
 
+    }
+
+    public List<Ground> getGroundList(){
+        return groundList ;
     }
 
     private void initToyGround() {

@@ -2,6 +2,7 @@ package convertor;
 
 import Command.CommandInformation;
 import Command.CommandType;
+import Command.CommandException;
 import player.*;
 
 import java.security.InvalidParameterException;
@@ -105,8 +106,9 @@ public class StringConvert {
             return new CommandInformation(CommandType.SELL,Distance(command,"sell "));
         }  else if(isSellTool(command)) {
             return new CommandInformation(CommandType.SELL,Distance(command,"selltool "));
+        }  else{
+           throw new CommandException("Command error");
         }
-        return null;
     }
 
     private boolean isSellTool(String command) {
@@ -160,8 +162,5 @@ public class StringConvert {
         return command.equals("query");
     }
 
-    private class CommandException extends Throwable {
-        public CommandException(String s) {
-        }
-    }
+
 }

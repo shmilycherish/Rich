@@ -1,3 +1,5 @@
+import Game.GameMap;
+import Game.Ground;
 import org.hamcrest.*;
 import org.junit.Before;
 import org.junit.Test;

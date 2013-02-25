@@ -1,6 +1,9 @@
+package Game;
+
+import Game.GameMap;
+import Game.RichGame;
 import convertor.StringConvert;
 import player.Player;
-import sun.rmi.runtime.NewThreadAction;
 
 import java.util.*;
 

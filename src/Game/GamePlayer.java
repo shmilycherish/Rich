@@ -1,3 +1,4 @@
+package Game;
 
 public class GamePlayer {
 	private String charactersType;

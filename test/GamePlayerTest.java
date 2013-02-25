@@ -1,3 +1,4 @@
+import Game.GamePlayer;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;

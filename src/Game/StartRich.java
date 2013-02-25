@@ -1,3 +1,9 @@
+package Game;
+
+import Game.GameMap;
+import Game.GamePlayer;
+import Game.Ground;
+
 import java.util.*;
 
 
@@ -44,7 +50,7 @@ public class StartRich {
 		
 		playersNumber=charactersTypes.length();
 		HashMap gamePlayers=new HashMap();				
-		GamePlayer gamePlayer;		
+		GamePlayer gamePlayer;
 		for(int i=0;i<playersNumber;i++){			
 			gamePlayer=new GamePlayer(charactersTypes.substring(i, i+1),funds);			
 			gamePlayers.put(charactersTypes.substring(i, i+1), gamePlayer);
@@ -137,7 +143,7 @@ public class StartRich {
 	private void otherLocationPerformance(GamePlayer gamePlayer) {
 		// TODO Auto-generated method stub
 		int location=gamePlayer.getLocation();
-		Ground ground=gameMap.groundList.get(location);
+		Ground ground=gameMap.getGroundList().get(location);
 		if(gamePlayer.getLocation()>=64&&gamePlayer.getLocation()<=69)
 			gamePlayer.points+=ground.getPoint();
 		else{
@@ -147,12 +153,12 @@ public class StartRich {
 
 	public void estateOperation(GamePlayer gamePlayer) {
 		int location=gamePlayer.getLocation();
-		Ground ground=gameMap.groundList.get(location);
+		Ground ground=gameMap.getGroundList().get(location);
 		if(ground.getOwners().equals("0")){
 			System.out.println("是否购买该处空地，"+ground.getPrice()+"元（Y/N）?");
 			checkBuyanswer(gamePlayer);			
 		}else if(ground.getOwners().equals(gamePlayer.getCharactersType())){
-			if(gameMap.groundList.get(location).getGroundType()<3){
+			if(gameMap.getGroundList().get(location).getGroundType()<3){
 				System.out.println("是否升级该处地产，"+ground.getPrice()+"元（Y/N）?");
 				checkBuyanswer(gamePlayer);
 			}
@@ -166,9 +172,9 @@ public class StartRich {
 		// TODO Auto-generated method stub
 		String buyResult=readUserInput(new Scanner(System.in));
 		if(buyResult.equalsIgnoreCase("Y")){
-			if(gamePlayer.funds>=gameMap.groundList.get(gamePlayer.getLocation()).getPrice()){
-				gamePlayer.funds-=gameMap.groundList.get(gamePlayer.getLocation()).getPrice();
-				gameMap.groundList.get(gamePlayer.getLocation()).setOwners(gamePlayer.getCharactersType());
+			if(gamePlayer.funds>=gameMap.getGroundList().get(gamePlayer.getLocation()).getPrice()){
+				gamePlayer.funds-=gameMap.getGroundList().get(gamePlayer.getLocation()).getPrice();
+				gameMap.getGroundList().get(gamePlayer.getLocation()).setOwners(gamePlayer.getCharactersType());
 			}else{
 				System.out.println("剩余资金不够");
 			}
@@ -188,7 +194,7 @@ public class StartRich {
 	private void getIntoPrison(GamePlayer gamePlayer) {
 		// TODO Auto-generated method stub
 		gamePlayer.setLocation(49);
-		gameMap.groundList.get(gamePlayer.getLocation()).setDisplay(gamePlayer.getDisplay());
+		gameMap.getGroundList().get(gamePlayer.getLocation()).setDisplay(gamePlayer.getDisplay());
 		gamePlayer.status=2;
 		gamePlayer.leftdays=2;
 	}
@@ -242,13 +248,13 @@ public class StartRich {
 	private void stopInBlock(GamePlayer gamePlayer, int StagePropertylocation) {
 		// TODO Auto-generated method stub
 		gamePlayer.setLocation(StagePropertylocation);
-		gameMap.groundList.get(gamePlayer.getLocation()).setDisplay(gamePlayer.getDisplay());
+		gameMap.getGroundList().get(gamePlayer.getLocation()).setDisplay(gamePlayer.getDisplay());
 		//currentLocationPerformance(gamePlayer);
 	}
 
 	public void getIntoHospital(GamePlayer gamePlayer) {
 		gamePlayer.setLocation(14);
-		gameMap.groundList.get(gamePlayer.getLocation()).setDisplay(gamePlayer.getDisplay());
+		gameMap.getGroundList().get(gamePlayer.getLocation()).setDisplay(gamePlayer.getDisplay());
 		gamePlayer.status=1;
 		gamePlayer.leftdays=3;
 	}

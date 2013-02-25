@@ -1,3 +1,6 @@
+package Game;
+
+import Game.RichGame;
 import player.Player;
 
 /**

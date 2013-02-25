@@ -1,3 +1,4 @@
+import Game.Prop;
 import org.junit.Before;
 import org.junit.Test;
 

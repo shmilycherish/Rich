@@ -1,5 +1,6 @@
 package convertor;
 
+import Command.CommandException;
 import Command.CommandInformation;
 import Command.CommandType;
 import org.hamcrest.Description;
@@ -256,5 +257,12 @@ public class StringConvertTest {
         CommandInformation commandInformation =stringConvert.convertCommand("sEll 40") ;
         assertThat(commandInformation.getCommandType(),is(CommandType.SELL));
         assertThat(commandInformation.getArg(),is(40));
+    }
+
+    @Test  (expected = CommandException.class)
+    public void shouldGetExceptionWhenTheCommandIsWrong()
+    {
+        StringConvert stringConvert = new StringConvert();
+        stringConvert.convertCommand("block -11");
     }
 }
