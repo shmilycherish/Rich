@@ -45,7 +45,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldGetCorrectInformationWhenJinBaoBei()
+     public void shouldGetCorrectInformationWhenJinBaoBei()
     {
         Player player = new JinBaoBeiPlayer(10000);
 
@@ -53,4 +53,16 @@ public class PlayerTest {
         assertThat(player.getCharacterName(), is("金宝贝"));
         assertThat(player.getDisplayName(), is("J"));
     }
+
+    @Test
+    public void shouldGetIntoHospitali()
+    {
+        Player player = new JinBaoBeiPlayer(10000);
+        player.getIntoHospital();
+        assertThat(player.getLocaion(),is(14));
+        assertThat(player.getHospitalOrPrison(),is(1));
+        assertThat(player.getLeftDays(),is(3));
+
+    }
+
 }

@@ -14,6 +14,8 @@ public abstract class Player {
     private int[] landedProperty={0,0,0,0};
     private int[] props={0,0,0} ;
     private int locaion=0;
+    private int hospitalOrPrison=0;
+    private int leftDays=0;
     public Player()
     {
         this.funds = 10000;
@@ -75,4 +77,25 @@ public abstract class Player {
     }
 
 
+    public void getIntoHospital() {
+        this.setLocaion(14);
+        setHospitalOrPrison(1);
+        setLeftDays(3);
+    }
+
+    public int getHospitalOrPrison() {
+        return hospitalOrPrison;
+    }
+
+    public void setHospitalOrPrison(int hospitalOrPrison) {
+        this.hospitalOrPrison = hospitalOrPrison;
+    }
+
+    public int getLeftDays() {
+        return leftDays;
+    }
+
+    public void setLeftDays(int leftDays) {
+        this.leftDays = leftDays;
+    }
 }
