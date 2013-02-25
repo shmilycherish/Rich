@@ -10,8 +10,10 @@ import player.Player;
 import player.QianfurenPlayer;
 
 import java.security.InvalidParameterException;
+import java.util.HashMap;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -78,7 +80,7 @@ public class CommandOperationTest {
         player.setLocaion(64);
         assertThat( commandOperation.calculatePropLocation(3),is(67));
         assertThat( commandOperation.calculatePropLocation(9),is(3));
-        assertThat( commandOperation.calculatePropLocation(-1),is(63));
+        assertThat(commandOperation.calculatePropLocation(-1), is(63));
 
     }
     @Test
@@ -143,5 +145,42 @@ public class CommandOperationTest {
     {
         richGame.getProps().put(4,"BLOCK");
         commandOperation.bomb(4);
+    }
+
+    @Test
+    public void shouldRobotRight()
+    {
+        player.setProps(new int[]{1,1,1});
+        HashMap props=new HashMap();
+        props.put(2,"BOMB") ;
+        props.put(10,"BOMB") ;
+        richGame.setProps(props);
+        commandOperation=new CommandOperation(player,richGame);
+        commandOperation.robot();
+        assertFalse(commandOperation.getRichGame().getProps().containsKey(2));
+        assertFalse(commandOperation.getRichGame().getProps().containsKey(10));
+        assertThat(player.getProps()[1],is(0));
+    }
+
+    @Test(expected = CommandException.class)
+    public void shouldGetExceptionWhenHaveNoRobot()
+    {
+        player.setProps(new int[]{1,0,1});
+        commandOperation.robot();
+    }
+
+    @Test
+    public void shouldGetRightDataAfterSellBlock()
+    {
+        player.setProps(new int[]{1,0,1});
+        commandOperation.sellTool(1);
+         assertThat(player.getProps()[0],is(0));
+    }
+
+    @Test(expected = CommandException.class)
+    public void shouldGetExceptionWhenHaveNoRobotToSell()
+    {
+        player.setProps(new int[]{1,0,1});
+        commandOperation.sellTool(2);
     }
 }

@@ -114,7 +114,31 @@ public class CommandOperation {
         } else if(haveProps(bombLocation)||havePlayer(bombLocation)) {
             throw new CommandException("You CANNOT placed your prop there") ;
         }  else if(!player.haveProp(3)) {
-            throw new CommandException("You have no block") ;
+            throw new CommandException("You have no bomb") ;
         }
     }
+
+    public void robot(){
+         if(player.haveProp(2)) {
+             int removeEndLocation=player.getLocaion()+10;
+             int removeLocation=player.getLocaion()+1;
+             while(removeLocation<=removeEndLocation) {
+                 richGame.getProps().remove(removeLocation%70);
+                 removeLocation++;
+             }
+             player.getProps()[1]-=1;
+         } else{
+             throw new CommandException("You have no robot") ;
+         }
+    }
+
+    public void sellTool(int toolType){
+        if(player.haveProp(toolType)){
+            player.getProps()[toolType-1]-=1;
+        }   else{
+            throw new CommandException("You have no prop of type"+toolType+"to sell ") ;
+        }
+    }
+
+
 }
