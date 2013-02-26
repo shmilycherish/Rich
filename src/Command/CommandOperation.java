@@ -2,6 +2,8 @@ package Command;
 
 import Game.Ground;
 import Game.GroundFactory;
+import Game.UserInput;
+import RollAct.RollAction;
 import player.Player;
 import Game.RichGame;
 
@@ -74,7 +76,7 @@ public class CommandOperation {
 
      public void block(int blockDistance){
          int  blockLocation= calculatePropLocation(blockDistance) ;
-         if(canPlaceProp(blockLocation,1))  {
+         if(canPlaceProp(blockLocation, 1))  {
              richGame.getProps().put(blockLocation,"BLOCK");
              player.getProps()[0]-=1;
          } else if(haveProps(blockLocation)||havePlayer(blockLocation)) {
@@ -108,7 +110,7 @@ public class CommandOperation {
 
     public void bomb(int bombDistance){
         int  bombLocation= calculatePropLocation(bombDistance) ;
-        if(canPlaceProp(bombLocation,3))  {
+        if(canPlaceProp(bombLocation, 3))  {
             richGame.getProps().put(bombLocation,"BOMB");
             player.getProps()[2]-=1;
         } else if(haveProps(bombLocation)||havePlayer(bombLocation)) {
@@ -138,6 +140,15 @@ public class CommandOperation {
         }   else{
             throw new CommandException("You have no prop of type"+toolType+"to sell ") ;
         }
+    }
+
+    public void roll(){
+        int rollResult=(int) (Math.random()*6+1);
+        RollAction  rollAction=new RollAction(player,richGame,new UserInput()) ;
+        rollAction.executeRoll(rollResult);
+        richGame =rollAction.getRichGame() ;
+        player= rollAction.getPlayer();
+
     }
 
 

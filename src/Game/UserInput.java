@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class UserInput {
     private Scanner scanner=new Scanner(System.in);
     public String readUserInput() {
-        return    scanner.next();
+        return    scanner.nextLine();
     }
 
     public void printMessage(String message) {

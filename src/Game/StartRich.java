@@ -201,12 +201,8 @@ public class StartRich {
 
 	private void chooseGift(GamePlayer gamePlayer) {
 		// TODO Auto-generated method stub
-		System.out.println("欢迎光临礼品屋，请选择一件您 喜欢的礼品：");
-		System.out.println("礼    品  编号:");
-		System.out.println("奖    金    1");
-		System.out.println("点数卡   2");
-		System.out.println("福     神   3");
-		System.out.println("输入礼品编号选择礼品，只能选择一件礼品，选择后，自动退出礼品屋（输入错误视为放弃此次机会）");
+		GameMessage gameMessage =new GameMessage();
+        gameMessage.GiftHouseWelcomeMessage();
 		String giftCode=readUserInput(new Scanner(System.in));
 		switch(giftCode.charAt(0)){
 		case 1:gamePlayer.funds+=2000;break;

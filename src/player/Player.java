@@ -16,6 +16,8 @@ public abstract class Player {
     private int locaion=0;
     private int hospitalOrPrison=0;
     private int leftDays=0;
+    private int MascotLeftDays=0;
+    private boolean isBankrupt=false;
     public Player()
     {
         this.funds = 10000;
@@ -78,7 +80,7 @@ public abstract class Player {
 
 
     public void getIntoHospital() {
-        this.setLocaion(14);
+        setLocaion(14);
         setHospitalOrPrison(1);
         setLeftDays(3);
     }
@@ -97,5 +99,37 @@ public abstract class Player {
 
     public void setLeftDays(int leftDays) {
         this.leftDays = leftDays;
+    }
+
+    public void stopInBlock(int propFirstMeet) {
+        setLocaion(propFirstMeet);
+    }
+
+    public void getIntoPrisson() {
+        setLocaion(49);
+        setHospitalOrPrison(2);
+        setLeftDays(2);
+    }
+
+    public int getMascotLeftDays() {
+        return MascotLeftDays;
+    }
+
+    public void setMascotLeftDays(int mascotLeftDays) {
+        MascotLeftDays = mascotLeftDays;
+    }
+
+    public boolean propBoxIsHaveSpace() {
+        int propNumber=props[0]+props[1]+props[2];
+        return propNumber<10;
+    }
+
+
+    public boolean getBankrupt() {
+        return isBankrupt;
+    }
+
+    public void setBankrupt(boolean bankrupt) {
+        isBankrupt = bankrupt;
     }
 }

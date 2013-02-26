@@ -65,4 +65,14 @@ public class PlayerTest {
 
     }
 
+    @Test
+    public void shouldGetIntoPrison()
+    {
+        Player player = new JinBaoBeiPlayer(10000);
+        player.getIntoPrisson();
+        assertThat(player.getLocaion(),is(49));
+        assertThat(player.getHospitalOrPrison(),is(2));
+        assertThat(player.getLeftDays(),is(2));
+
+    }
 }

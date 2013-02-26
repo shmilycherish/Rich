@@ -112,6 +112,7 @@ public class GameMap {
         for (int i = 63; i >= 35; i--) {
             System.out.print(groundList.get(i).getDisplay());
         }
+        System.out.println();
     }
 
     public void printLine(int firstGround, int lastGround) {

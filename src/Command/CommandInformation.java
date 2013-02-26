@@ -10,6 +10,8 @@ package Command;
 public class CommandInformation {
     private CommandType commandType;
     private int arg;
+    public CommandInformation(){
+    }
     public CommandInformation(CommandType commandType){
         setCommandType(commandType) ;
     }

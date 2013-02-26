@@ -1,8 +1,14 @@
 package Game;
 
+import Command.CommandException;
+import Command.CommandOperation;
 import Game.RichGame;
 import Game.RichPreparation;
 import Game.UserInput;
+import player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,10 +19,74 @@ import Game.UserInput;
  */
 public class Rich {
     private RichPreparation richPreparation=new RichPreparation(new UserInput())  ;
+    private UserInput userInput=new UserInput();
     RichGame richGame;
+    int start=0;
+    Player player;
     public void startRichGame() {
         richPreparation.prepareRichGame();
         richGame=  richPreparation.getRichGame();
     }
+    public void riching() {
 
+        while(richGame.getPlayerCount()>=2) {
+             start= start%4 ;
+             player= richGame.getPlayers().get(start) ;
+             CommandOperation  commandOperation =new CommandOperation(player,richGame);
+             if(player.getLeftDays()==0){
+                 APlayerRound  APlayerRound=new  APlayerRound(commandOperation);
+                 while(APlayerRound.isGoing()){
+                     try{
+                     APlayerRound.receiveCommand(userInput);
+                     }    catch(CommandException e){
+                         userInput.printMessage(e.getMessage());
+                     }
+                 }
+                 richGame.initialPlayers(putPlayer(start, player));
+             }
+            changeMapDisplay();
+            richGame.getGameMap().printMap();
+            start++;
+        }
+    }
+
+    private List<Player> putPlayer(int start, Player player) {
+
+        List<Player> players=new ArrayList<Player>();
+            for(int i=0;i<richGame.getPlayerCount();i++) {
+                 if(i!=start){
+                     players.add(i,richGame.getPlayers().get(i) );
+                 } else{
+                     players.add(i,player);
+                 }
+            }
+         return players;
+    }
+
+    public void changeMapDisplay(){
+        for(int i=0;i<64;i++) {
+            richGame.getGameMap().getGroundList().get(i).setDisplay(String.valueOf(richGame.getGameMap().getGroundList().get(i).getGroundType()));
+        }
+            richGame.getGameMap().getGroundList().get(0).setDisplay("S");
+            richGame.getGameMap().getGroundList().get(14).setDisplay("H");
+            richGame.getGameMap().getGroundList().get(28).setDisplay("T");
+            richGame.getGameMap().getGroundList().get(35).setDisplay("G");
+            richGame.getGameMap().getGroundList().get(49).setDisplay("P");
+            richGame.getGameMap().getGroundList().get(63).setDisplay("M");
+        for(int i=64;i<70;i++) {
+            richGame.getGameMap().getGroundList().get(i).setDisplay("$");
+        }
+            for(int i=0;i<70;i++) {
+            if(richGame.getProps().containsKey(i)) {
+                if(richGame.getProps().get(i).equals("BLOCK")) {
+                    richGame.getGameMap().getGroundList().get(i).setDisplay("#");
+                }  else if(richGame.getProps().get(i).equals("BOMB"))  {
+                    richGame.getGameMap().getGroundList().get(i).setDisplay("@");
+                }
+            }
+        }
+        for(int i=0;i<richGame.getPlayerCount();i++) {
+            richGame.getGameMap().getGroundList().get(richGame.getPlayers().get(i).getLocaion()).setDisplay(richGame.getPlayers().get(i).getDisplayName());
+        }
+    }
 }

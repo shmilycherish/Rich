@@ -19,7 +19,7 @@ public class RichPreparation {
 
     private StringConvert stringConvert;
     private UserInput userInput;
-
+    private GameMessage gameMessage=new GameMessage();
     public RichPreparation(UserInput userInput)
     {
               this.userInput = userInput;
@@ -37,11 +37,15 @@ public class RichPreparation {
 
     private void prepareGameMap() {
         richGame.setGameMap(new GameMap());
+        gameMessage.GameBeginWelcomeMessage();
     }
 
     public void prepareInteractiveData()
     {
+        gameMessage.GameBeginWelcomeMessage();
+        gameMessage.setFundsPromptMessage();
         initFunds();
+        gameMessage.choosePlayersPromptMessage();
         List<Player> playerList = initPlayers(richGame.getFunds());
     }
 
