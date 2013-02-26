@@ -58,7 +58,7 @@ public class Rich {
                 }
              }  else{
                 String message=commandOperation.getPlayer().getCharacterName()+"> 休息中" ;
-                SetColor.printColorString(message, Color.GRAY);
+                SetColor.printColorStringln(message, Color.GRAY);
                 player.statusRefresh();
                 richGame.initialPlayers(putPlayer(start, player));
             }

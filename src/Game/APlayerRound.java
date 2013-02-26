@@ -24,7 +24,7 @@ public class APlayerRound {
         this. commandOperation= commandOperation;
     }
     public void receiveCommand(UserInput userInput){
-        String message=commandOperation.getPlayer().getCharacterName()+">" ;
+        String message=commandOperation.getPlayer().getCharacterName()+" >   " ;
         SetColor.printColorString(message, Color.GRAY);
         CommandInformation  commandInformation=new CommandInformation();
         int i=0;

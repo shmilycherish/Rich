@@ -143,6 +143,7 @@ public class CommandOperation {
 
     public void roll(){
         int rollResult=(int) (Math.random()*6+1);
+        SetColor.printline("roll result is"+rollResult);
         RollAction  rollAction=new RollAction(player,richGame,new UserInput()) ;
         rollAction.executeRoll(rollResult);
         richGame =rollAction.getRichGame() ;

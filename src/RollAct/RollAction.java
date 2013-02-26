@@ -38,7 +38,7 @@ public class RollAction {
         }  else{
             player.setLocaion((player.getLocaion()+rollResult)%70);
         }
-        groundAction() ;
+        groundAction();
     }
 
     private void groundAction() {
@@ -99,6 +99,7 @@ public class RollAction {
                       player.setBankrupt(true);
                 }   else{
                     player.setFunds(player.getFunds()-tolls);
+                    SetColor.printline("交过路费"+tolls+"元");
                     richGame.getPlayers().get(i).setFunds( richGame.getPlayers().get(i).getFunds()+tolls);
                 }
             }
