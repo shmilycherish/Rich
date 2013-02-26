@@ -27,7 +27,7 @@ public class GameMessage {
         SetColor.printline("道具        编号    价值（点数）    显示方式");
         SetColor.printline("路障         1         50          ＃");
         SetColor.printline("机器娃娃     2         30");
-        SetColor.printline("炸 弹        3        50            @");
+        SetColor.printline("炸 弹        3         50            @");
         SetColor.printline("输入道具编号选择道具，每次只能选择一件道具，按F退出道具屋");
     }
 

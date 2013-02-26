@@ -36,8 +36,7 @@ public class APlayerRound {
             }catch(Exception e) {
                 i=0 ;
                 userInput.printMessage(e.getMessage());
-                SetColor.printColorString(commandOperation.getPlayer().getCharacterName()+" >", Color.GRAY);
-                //System.out.print(commandOperation.getPlayer().getCharacterName()+">");
+                SetColor.printColorString(commandOperation.getPlayer().getCharacterName()+" >   ", Color.GRAY);
             }
         }
         switch (commandInformation.getCommandType()) {

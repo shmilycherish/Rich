@@ -57,7 +57,7 @@ public class Rich {
                     start--;
                 }
              }  else{
-                String message=commandOperation.getPlayer().getCharacterName()+"> 休息中" ;
+                String message=commandOperation.getPlayer().getCharacterName()+"> 休息中,还剩" +player.getLeftDays();
                 SetColor.printColorStringln(message, Color.GRAY);
                 player.statusRefresh();
                 richGame.initialPlayers(putPlayer(start, player));

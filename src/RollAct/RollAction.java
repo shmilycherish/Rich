@@ -89,7 +89,7 @@ public class RollAction {
         }   else{
             int i=findTheAreaOwner(ground.getOwners()) ;
             if(player.getMascotLeftDays()>0){
-                SetColor.printline("福神在身，免收过路费");
+                SetColor.printline("福神在身，免收过路费,还剩"+(player.getMascotLeftDays()-1)+"天");
             }  else if(richGame.getPlayers().get(i).getHospitalOrPrison()>0){
                 SetColor.printline("主人不在，免收过路费");
             } else{
@@ -266,6 +266,7 @@ public class RollAction {
        } else if(propName.equals("BLOCK")) {
               blockAction(propFirstMeet);
        }
+       richGame.getProps().remove(propFirstMeet) ;
     }
 
     private void blockAction(int propFirstMeet) {

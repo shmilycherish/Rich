@@ -105,7 +105,7 @@ public class StringConvert {
         } else if(isSell(command)) {
             return new CommandInformation(CommandType.SELL,Distance(command,"sell "));
         }  else if(isSellTool(command)) {
-            return new CommandInformation(CommandType.SELL,Distance(command,"selltool "));
+            return new CommandInformation(CommandType.SELLTOOL,Distance(command,"selltool "));
         }  else{
            throw new CommandException("Command error");
         }

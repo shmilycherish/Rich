@@ -1,5 +1,7 @@
 package player;
 
+import Game.SetColor;
+
 /**
  * Created with IntelliJ IDEA.
  * User: shmilyhoney
@@ -83,6 +85,7 @@ public abstract class Player {
         setLocaion(14);
         setHospitalOrPrison(1);
         setLeftDays(3);
+        SetColor.printline("进医院休息三天");
     }
 
     public int getHospitalOrPrison() {
@@ -109,6 +112,7 @@ public abstract class Player {
         setLocaion(49);
         setHospitalOrPrison(2);
         setLeftDays(2);
+        SetColor.printline("进监狱休息二天");
     }
 
     public int getMascotLeftDays() {

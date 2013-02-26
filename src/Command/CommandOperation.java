@@ -36,8 +36,8 @@ public class CommandOperation {
         SetColor.print("洋房"+player.getLandedProperty()[2]+"处;   ");
         SetColor.printline("摩天楼" + player.getLandedProperty()[3] + "处.   ");
         SetColor.print("道具:路障"+player.getProps()[0]+"个;   ");
-        SetColor.print("炸弹"+player.getProps()[1]+"个;   ");
-        SetColor.printline("机器娃娃" + player.getProps()[2] + "个..   ");
+        SetColor.print("机器娃娃"+player.getProps()[1]+"个;   ");
+        SetColor.printline("炸弹" + player.getProps()[2] + "个..   ");
     }
 
     public void help(){
@@ -143,7 +143,7 @@ public class CommandOperation {
 
     public void roll(){
         int rollResult=(int) (Math.random()*6+1);
-        SetColor.printline("roll result is"+rollResult);
+        SetColor.printline("roll result is "+rollResult);
         RollAction  rollAction=new RollAction(player,richGame,new UserInput()) ;
         rollAction.executeRoll(rollResult);
         richGame =rollAction.getRichGame() ;
