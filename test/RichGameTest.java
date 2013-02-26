@@ -42,7 +42,8 @@ public class RichGameTest {
          List<Player> playerList = new ArrayList<Player>();
          richGame.initialPlayers(playerList);
          int playerCount = richGame.getPlayerCount();
-          assertThat(playerCount,is(0));
+         assertThat(playerCount,is(0));
     }
+
 
 }

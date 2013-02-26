@@ -2,6 +2,7 @@ import Game.RichGame;
 import Game.RichPreparation;
 import Game.UserInput;
 import RollAct.RollAction;
+import convertor.StringConvert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -153,5 +154,94 @@ public class RollActionTest {
         rollAction.executeRoll(3);
         assertThat(rollAction.getPlayer().getLocaion(),is(44));
         assertThat(rollAction.getPlayer().getFunds(),is(10000));
+    }
+    @Test
+    public void shouldMeetNoPropWhenGotoAreaisGiftHouse (){
+        UserInput userInput = Mockito.mock(UserInput.class) ;
+        Mockito.when(userInput.readUserInput()).thenReturn("10000").thenReturn("2134").thenReturn("S").thenReturn("Q").thenReturn("F");
+        RichPreparation richPreparation=new RichPreparation(userInput);;
+        richPreparation.prepareRichGame();
+        richGame=richPreparation.getRichGame();
+        player= richGame.getPlayers().get(2) ;
+        player.setLocaion(26);
+        player.setPoints(100);
+        rollAction=new RollAction(player,richGame,userInput);
+        rollAction.executeRoll(2);
+        Mockito.verify(userInput, Mockito.times(2)).printMessage("prop type should be 1 or 2 or 3");
+         assertThat(rollAction.getPlayer().getLocaion(),is(28));
+         assertThat(rollAction.getPlayer().getPoints(),is(100));
+    }
+
+    @Test
+    public void shouldMeetNoPropWhenGotoAreaisToolHouseWhenBuy2Props (){
+        UserInput userInput = Mockito.mock(UserInput.class) ;
+        Mockito.when(userInput.readUserInput()).thenReturn("10000").thenReturn("2134").thenReturn("1").thenReturn("2").thenReturn("2");
+        RichPreparation richPreparation=new RichPreparation(userInput);;
+        richPreparation.prepareRichGame();
+        richGame=richPreparation.getRichGame();
+        player= richGame.getPlayers().get(2) ;
+        player.setLocaion(26);
+        player.setPoints(100);
+        rollAction=new RollAction(player,richGame,userInput);
+        rollAction.executeRoll(2);
+
+        assertThat(rollAction.getPlayer().getLocaion(),is(28));
+        assertThat(rollAction.getPlayer().getPoints(),is(20));
+        assertThat(rollAction.getPlayer().getProps()[0],is(1));
+        assertThat(rollAction.getPlayer().getProps()[1],is(1));
+    }
+
+    @Test
+     public void shouldMeetNoPropWhenGotoAreaisToolHouseWhenChooseFunds (){
+        UserInput userInput = Mockito.mock(UserInput.class) ;
+        Mockito.when(userInput.readUserInput()).thenReturn("10000").thenReturn("2134").thenReturn("1") ;
+        RichPreparation richPreparation=new RichPreparation(userInput);
+        richPreparation.prepareRichGame();
+        richGame=richPreparation.getRichGame();
+        player= richGame.getPlayers().get(2) ;
+        player.setLocaion(34);
+        player.setPoints(100);
+        rollAction=new RollAction(player,richGame,userInput);
+        rollAction.executeRoll(1);
+
+        assertThat(rollAction.getPlayer().getLocaion(),is(35));
+        assertThat(rollAction.getPlayer().getPoints(),is(100));
+        assertThat(rollAction.getPlayer().getFunds(),is(12000));
+
+    }
+
+    @Test
+    public void shouldMeetNoPropWhenGotoAreaisToolHouseWhenChoosepPoints (){
+        UserInput userInput = Mockito.mock(UserInput.class) ;
+        Mockito.when(userInput.readUserInput()).thenReturn("10000").thenReturn("2134").thenReturn("2");
+        RichPreparation richPreparation=new RichPreparation(userInput);;
+        richPreparation.prepareRichGame();
+        richGame=richPreparation.getRichGame();
+        player= richGame.getPlayers().get(2) ;
+        player.setLocaion(34);
+        player.setPoints(100);
+        rollAction=new RollAction(player,richGame,userInput);
+        rollAction.executeRoll(1);
+
+        assertThat(rollAction.getPlayer().getLocaion(),is(35));
+        assertThat(rollAction.getPlayer().getPoints(),is(300));
+
+    }
+    @Test
+    public void shouldMeetNoPropWhenGotoAreaisToolHouseWhenChoosepMascot (){
+        UserInput userInput = Mockito.mock(UserInput.class) ;
+        Mockito.when(userInput.readUserInput()).thenReturn("10000").thenReturn("2134").thenReturn("3");
+        RichPreparation richPreparation=new RichPreparation(userInput);
+        richPreparation.prepareRichGame();
+        richGame=richPreparation.getRichGame();
+        player= richGame.getPlayers().get(2) ;
+        player.setLocaion(34);
+        player.setPoints(100);
+        rollAction=new RollAction(player,richGame,userInput);
+        rollAction.executeRoll(1);
+
+        assertThat(rollAction.getPlayer().getLocaion(),is(35));
+        assertThat(rollAction.getPlayer().getMascotLeftDays(),is(5));
+
     }
 }

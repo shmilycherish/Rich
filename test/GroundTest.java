@@ -1,8 +1,6 @@
-import Game.Ground;
+import RichMap.Ground;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

@@ -1,6 +1,5 @@
 import Game.GamePlayer;
 import Game.Rich;
-import Game.StartRich;
 import org.junit.Test;
 
 /**
@@ -13,7 +12,6 @@ import org.junit.Test;
 public class RichTest {
     @Test
     public void shouldstartGame(){
-         Rich rich=new Rich();
-        rich.startRichGame();
+
     }
 }

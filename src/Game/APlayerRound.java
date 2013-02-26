@@ -6,6 +6,8 @@ import Game.RichGame;
 import convertor.StringConvert;
 import player.Player;
 
+import java.awt.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: cherish
@@ -20,9 +22,10 @@ public class APlayerRound {
     UserInput userInput=new UserInput();
     public APlayerRound( CommandOperation  commandOperation ){
         this. commandOperation= commandOperation;
-}
+    }
     public void receiveCommand(UserInput userInput){
-        System.out.print(commandOperation.getPlayer().getCharacterName()+">");
+        String message=commandOperation.getPlayer().getCharacterName()+">" ;
+        SetColor.printColorString(message, Color.GRAY);
         CommandInformation  commandInformation=new CommandInformation();
         int i=0;
         while(i==0) {
@@ -33,7 +36,8 @@ public class APlayerRound {
             }catch(Exception e) {
                 i=0 ;
                 userInput.printMessage(e.getMessage());
-                System.out.print(commandOperation.getPlayer().getCharacterName()+">");
+                SetColor.printColorString(commandOperation.getPlayer().getCharacterName()+" >", Color.GRAY);
+                //System.out.print(commandOperation.getPlayer().getCharacterName()+">");
             }
         }
         switch (commandInformation.getCommandType()) {
@@ -44,7 +48,7 @@ public class APlayerRound {
             case SELLTOOL: commandOperation.sellTool(commandInformation.getArg()); break;
             case QUERY:    commandOperation.query(); break;
             case HELP:    commandOperation.help(); break;
-            case QUIT:     break;
+            case QUIT:    commandOperation.quit();setGoing(false); break;
             case ROLL:    commandOperation.roll();setGoing(false);break;
         }
 

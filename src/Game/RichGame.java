@@ -1,5 +1,7 @@
 package Game;
 
+import RichMap.GameMap;
+import RichMap.GroundFactory;
 import player.Player;
 
 import java.util.HashMap;
@@ -13,7 +15,7 @@ public class RichGame {
     private List<Player> players;
     private GameMap gameMap;
     private HashMap props;
-
+    private boolean exitGameFlag=false;
     public GameMap getGameMap() {
         return gameMap;
     }
@@ -41,7 +43,7 @@ public class RichGame {
     }
 
     public int getPlayerCount() {
-        return players.size();  //To change body of created methods use File | Settings | File Templates.
+        return players.size();
     }
 
     public void setProps(HashMap props) {
@@ -52,5 +54,20 @@ public class RichGame {
     }
 
 
+    public boolean isExitGameFlag() {
+        return exitGameFlag;
+    }
 
+    public void setExitGameFlag(boolean exitGameFlag) {
+        this.exitGameFlag = exitGameFlag;
+    }
+
+    public void refreshMap(String playType) {
+        for(int i=0;i<gameMap.getGroundList().size();i++) {
+            if(gameMap.getGroundList().get(i).getOwners().equals(playType)) {
+                gameMap.getGroundList().set(i, GroundFactory.buildEmptyGroundWithPrice(gameMap.getGroundList().get(i).getPrice()));
+            }
+
+        }
+    }
 }

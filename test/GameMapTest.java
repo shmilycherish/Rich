@@ -1,5 +1,5 @@
-import Game.GameMap;
-import Game.Ground;
+import RichMap.GameMap;
+import RichMap.Ground;
 import org.hamcrest.*;
 import org.junit.Before;
 import org.junit.Test;

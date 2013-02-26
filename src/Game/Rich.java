@@ -5,8 +5,11 @@ import Command.CommandOperation;
 import Game.RichGame;
 import Game.RichPreparation;
 import Game.UserInput;
+import RichMap.Ground;
+import RichMap.GroundFactory;
 import player.Player;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,25 +33,44 @@ public class Rich {
     public void riching() {
 
         while(richGame.getPlayerCount()>=2) {
-             start= start%4 ;
-             player= richGame.getPlayers().get(start) ;
-             CommandOperation  commandOperation =new CommandOperation(player,richGame);
-             if(player.getLeftDays()==0){
-                 APlayerRound  APlayerRound=new  APlayerRound(commandOperation);
+            start= start%richGame.getPlayerCount() ;
+            player= richGame.getPlayers().get(start) ;
+            CommandOperation  commandOperation =new CommandOperation(player,richGame);
+            APlayerRound  APlayerRound=new  APlayerRound(commandOperation);
+            if(player.getLeftDays()==0){
                  while(APlayerRound.isGoing()){
                      try{
-                     APlayerRound.receiveCommand(userInput);
-                     }    catch(CommandException e){
+                        APlayerRound.receiveCommand(userInput);
+                     }catch(CommandException e){
                          userInput.printMessage(e.getMessage());
                      }
                  }
-                 richGame.initialPlayers(putPlayer(start, player));
-             }
+                richGame =  commandOperation.getRichGame();
+                if(richGame.isExitGameFlag()){
+                    System.exit(0);
+                }
+                player= commandOperation.getPlayer();
+
+                richGame.initialPlayers(putPlayer(start, player));
+                if(player.getBankrupt()){
+                    richGame.refreshMap(player.getDisplayName());
+                    start--;
+                }
+             }  else{
+                String message=commandOperation.getPlayer().getCharacterName()+"> 休息中" ;
+                SetColor.printColorString(message, Color.GRAY);
+                player.statusRefresh();
+                richGame.initialPlayers(putPlayer(start, player));
+            }
+
             changeMapDisplay();
             richGame.getGameMap().printMap();
             start++;
         }
+        SetColor.printline("游戏结束");
     }
+
+
 
     private List<Player> putPlayer(int start, Player player) {
 
@@ -57,7 +79,9 @@ public class Rich {
                  if(i!=start){
                      players.add(i,richGame.getPlayers().get(i) );
                  } else{
-                     players.add(i,player);
+                     if(!player.getBankrupt()){
+                         players.add(i,player);
+                     }
                  }
             }
          return players;

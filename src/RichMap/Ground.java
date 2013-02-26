@@ -1,4 +1,4 @@
-package Game;
+package RichMap;
 
 public class Ground {
     private String groundName="0";

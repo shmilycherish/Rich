@@ -1,6 +1,4 @@
-package Game;
-
-import Game.Ground;
+package RichMap;
 
 public class GroundFactory {
 

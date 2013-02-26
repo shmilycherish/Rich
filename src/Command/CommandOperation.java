@@ -1,11 +1,10 @@
 package Command;
 
-import Game.Ground;
-import Game.GroundFactory;
-import Game.UserInput;
+import Game.*;
+import RichMap.Ground;
+import RichMap.GroundFactory;
 import RollAct.RollAction;
 import player.Player;
-import Game.RichGame;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,28 +29,28 @@ public class CommandOperation {
     }
 
     public void query(){
-        System.out.println("资 金:"+player.getFunds()+"元");
-        System.out.println("点数:"+player.getPoints()+"点");
-        System.out.print("地产:空地"+player.getLandedProperty()[0]+"处；");
-        System.out.print("茅屋"+player.getLandedProperty()[1]+"处；");
-        System.out.print("洋房"+player.getLandedProperty()[2]+"处；");
-        System.out.println("摩天楼"+player.getLandedProperty()[3]+"处。");
-        System.out.print("道具:路障"+player.getProps()[0]+"个；");
-        System.out.print("炸弹"+player.getProps()[1]+"个；");
-        System.out.println("机器娃娃"+player.getProps()[2]+"个。");
+        SetColor.printline("资 金:" + player.getFunds() + "元");
+        SetColor.printline("点数:" + player.getPoints() + "点");
+        SetColor.print("地产:空地" + player.getLandedProperty()[0] + "处；   ");
+        SetColor.print("茅屋"+player.getLandedProperty()[1]+"处;   ");
+        SetColor.print("洋房"+player.getLandedProperty()[2]+"处;   ");
+        SetColor.printline("摩天楼" + player.getLandedProperty()[3] + "处.   ");
+        SetColor.print("道具:路障"+player.getProps()[0]+"个;   ");
+        SetColor.print("炸弹"+player.getProps()[1]+"个;   ");
+        SetColor.printline("机器娃娃" + player.getProps()[2] + "个..   ");
     }
 
     public void help(){
-        System.out.println("命令一览表");
-        System.out.println("掷骰子命令，行走1~6步。步数由随即算法产生。");
-        System.out.println("block n     玩家拥有路障后，可将路障放置到离当前位置前后10步的距离，任一玩家经过路障，都将被拦截。该道具一次有效。n 前后的相对距离，负数表示后方。");
-        System.out.println("bomb n    可将路障放置到离当前位置前后10步的距离，任一玩家j 经过在该位置，将被炸伤，送往医院，住院三天。n 前后的相对距离，负数表示后方。");
-        System.out.println("robot        使用该道具，可清扫前方路面上10步以内的其它道具，如炸弹、路障。");
-        System.out.println("sell x        出售自己的房产，x 地图上的绝对位置，即地产的编号。");
-        System.out.println("sellTool x  出售道具，x 道具编号");
-        System.out.println("query        显示自家资产信息 ");
-        System.out.println("help          查看命令帮助");
-        System.out.println("quit           强制退出");
+        SetColor.printline("命令一览表");
+        SetColor.printline("掷骰子命令，行走1~6步。步数由随即算法产生。");
+        SetColor.printline("block n     玩家拥有路障后，可将路障放置到离当前位置前后10步的距离，任一玩家经过路障，都将被拦截。该道具一次有效.n 前后的相对距离，负数表示后方.");
+        SetColor.printline("bomb n    可将路障放置到离当前位置前后10步的距离，任一玩家j 经过在该位置，将被炸伤，送往医院，住院三天.n 前后的相对距离，负数表示后方.");
+        SetColor.printline("robot        使用该道具，可清扫前方路面上10步以内的其它道具，如炸弹、路障.");
+        SetColor.printline("sell x        出售自己的房产，x 地图上的绝对位置，即地产的编号。");
+        SetColor.printline("sellTool x  出售道具，x 道具编号");
+        SetColor.printline("query        显示自家资产信息 ");
+        SetColor.printline("help          查看命令帮助");
+        SetColor.printline("quit           强制退出");
     }
 
     public void sell(int sellArg){
@@ -149,6 +148,8 @@ public class CommandOperation {
         richGame =rollAction.getRichGame() ;
         player= rollAction.getPlayer();
 
+    }   public void quit (){
+        richGame.setExitGameFlag(true);
     }
 
 

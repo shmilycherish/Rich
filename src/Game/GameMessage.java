@@ -1,5 +1,7 @@
 package Game;
 
+import java.awt.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: shmilyhoney
@@ -10,29 +12,31 @@ package Game;
 public class GameMessage {
 
     public void  GameBeginWelcomeMessage(){
-    System.out.println("欢迎开始大富翁游戏");
+         SetColor.printline("欢迎开始大富翁游戏");
+        //System.out.println("欢迎开始大富翁游戏");
     }
     public void  setFundsPromptMessage(){
-        System.out.println("设置玩家初始资金，范围1000～50000（默认10000）");
+        SetColor.printline("设置玩家初始资金，范围1000～50000（默认10000）");
+       // System.out.println("设置玩家初始资金，范围1000～50000（默认10000）");
     }
     public void  choosePlayersPromptMessage(){
-        System.out.println("请选择2~4位不重复玩家，输入编号即可。(1.钱夫人; 2.阿土伯; 3.孙小美; 4.金贝贝):");
+        SetColor.printline("请选择2~4位不重复玩家，输入编号即可。(1.钱夫人; 2.阿土伯; 3.孙小美; 4.金贝贝):");
     }
     public void propHouseWelcomeMessage()   {
-        System.out.println("欢迎光临礼品屋，请选择一件您 喜欢的礼品：");
-        System.out.println("礼    品  编号:");
-        System.out.println("奖    金    1");
-        System.out.println("点数卡   2");
-        System.out.println("福     神   3");
-        System.out.println("输入礼品编号选择礼品，只能选择一件礼品，选择后，自动退出礼品屋（输入错误视为放弃此次机会）");
+        SetColor.printline("欢迎光临道具屋，请选择一件您想要的道具：");
+        SetColor.printline("道具        编号    价值（点数）    显示方式");
+        SetColor.printline("路障         1         50          ＃");
+        SetColor.printline("机器娃娃     2         30");
+        SetColor.printline("炸 弹        3        50            @");
+        SetColor.printline("输入道具编号选择道具，每次只能选择一件道具，按F退出道具屋");
     }
 
     public void GiftHouseWelcomeMessage()   {
-        System.out.println("欢迎光临礼品屋，请选择一件您 喜欢的礼品：");
-        System.out.println("礼    品  编号:");
-        System.out.println("奖    金    1");
-        System.out.println("点数卡   2");
-        System.out.println("福     神   3");
-        System.out.println("输入礼品编号选择礼品，只能选择一件礼品，选择后，自动退出礼品屋（输入错误视为放弃此次机会）");
+        SetColor.printline("欢迎光临礼品屋，请选择一件您 喜欢的礼品：");
+        SetColor.printline("礼    品  编号:");
+        SetColor.printline("奖    金    1");
+        SetColor.printline("点数卡   2");
+        SetColor.printline("福     神   3");
+        SetColor.printline("输入礼品编号选择礼品，只能选择一件礼品，选择后，自动退出礼品屋（输入错误视为放弃此次机会）");
     }
 }

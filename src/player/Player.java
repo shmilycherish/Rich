@@ -16,7 +16,7 @@ public abstract class Player {
     private int locaion=0;
     private int hospitalOrPrison=0;
     private int leftDays=0;
-    private int MascotLeftDays=0;
+    private int mascotLeftDays=0;
     private boolean isBankrupt=false;
     public Player()
     {
@@ -112,11 +112,11 @@ public abstract class Player {
     }
 
     public int getMascotLeftDays() {
-        return MascotLeftDays;
+        return mascotLeftDays;
     }
 
     public void setMascotLeftDays(int mascotLeftDays) {
-        MascotLeftDays = mascotLeftDays;
+        this.mascotLeftDays = mascotLeftDays;
     }
 
     public boolean propBoxIsHaveSpace() {
@@ -131,5 +131,17 @@ public abstract class Player {
 
     public void setBankrupt(boolean bankrupt) {
         isBankrupt = bankrupt;
+    }
+
+    public void statusRefresh() {
+        if(this.leftDays>1) {
+            this.leftDays-=1;
+        }   else if(this.leftDays==1){
+            this.leftDays-=1;
+            this.hospitalOrPrison=0;
+        }
+        if(this.mascotLeftDays>1)  {
+            this.mascotLeftDays-=1;
+        }
     }
 }

@@ -1,5 +1,5 @@
-import Game.Ground;
-import Game.GroundFactory;
+import RichMap.Ground;
+import RichMap.GroundFactory;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;

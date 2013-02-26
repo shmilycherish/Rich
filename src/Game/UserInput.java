@@ -1,5 +1,6 @@
 package Game;
 
+import java.awt.*;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -11,12 +12,14 @@ import java.util.Scanner;
  * To change this template use File | Settings | File Templates.
  */
 public class UserInput {
-    private Scanner scanner=new Scanner(System.in);
+    //private Scanner scanner=new Scanner(System.in);
+    private SetColor setColor=new SetColor();
     public String readUserInput() {
-        return    scanner.nextLine();
+        return   SetColor.readInput();
     }
 
     public void printMessage(String message) {
-        System.out.println(message);
+        SetColor.printColorStringln(message, Color.PINK);
+       // System.out.println(message);
     }
 }

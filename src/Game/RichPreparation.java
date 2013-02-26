@@ -1,7 +1,6 @@
 package Game;
 
-import Game.GameMap;
-import Game.RichGame;
+import RichMap.GameMap;
 import convertor.StringConvert;
 import player.Player;
 
