@@ -13,12 +13,10 @@ public class GameMessage {
 
     public void  GameBeginWelcomeMessage(){
          SetColor.printline("欢迎开始大富翁游戏");
-        //System.out.println("欢迎开始大富翁游戏");
     }
     public void  setFundsPromptMessage(){
         SetColor.printline("设置玩家初始资金，范围1000～50000（默认10000）");
-       // System.out.println("设置玩家初始资金，范围1000～50000（默认10000）");
-    }
+}
     public void  choosePlayersPromptMessage(){
         SetColor.printline("请选择2~4位不重复玩家，输入编号即可。(1.钱夫人; 2.阿土伯; 3.孙小美; 4.金贝贝):");
     }

@@ -63,17 +63,9 @@ public class RollAction {
 
     private void estateOperation(int location) {
         Ground ground=richGame.getGameMap().getGroundList().get(location);
-        if(ground.getOwners().equals("0")){
-            SetColor.printline("是否购买该处空地，" + ground.getPrice() + "元（Y/N）?");
-            String result=getResult().toLowerCase();
-            if(result.equals("y")&&player.getFunds()>=ground.getPrice()) {
-                richGame.getGameMap().getGroundList().get(location).setOwners(player.getDisplayName());
-                player.setFunds(player.getFunds()-ground.getPrice());
-                player.getLandedProperty()[0]+=1;
-            } else if(player.getFunds()<ground.getPrice()){
-                SetColor.printline("资金不足");
-            }
-        } else if(ground.getOwners().equals(player.getDisplayName())) {
+        if(isAreaHaveNoOwner(ground)){
+            sellSpacePromt(location, ground);
+        } else if(isThePlayerLandProperty(ground)) {
             if( richGame.getGameMap().getGroundList().get(location).getGroundType()<3){
                 SetColor.printline("是否升级该处地产，" + ground.getPrice() + "元（Y/N）?");
                 String result=getResult();
@@ -100,10 +92,34 @@ public class RollAction {
                 }   else{
                     player.setFunds(player.getFunds()-tolls);
                     SetColor.printline("交过路费"+tolls+"元");
-                    richGame.getPlayers().get(i).setFunds( richGame.getPlayers().get(i).getFunds()+tolls);
+                    richGame.getPlayers().get(i).setFunds(richGame.getPlayers().get(i).getFunds() + tolls);
                 }
             }
         }
+    }
+
+    private void sellSpacePromt(int location, Ground ground) {
+        SetColor.printline("是否购买该处空地，" + ground.getPrice() + "元（Y/N）?");
+        String result=getResult().toLowerCase();
+        if(result.equals("y")&&player.getFunds()>=ground.getPrice()) {
+            buySpace(location, ground);
+        } else if(player.getFunds()<ground.getPrice()){
+            SetColor.printline("资金不足");
+        }
+    }
+
+    private void buySpace(int location, Ground ground) {
+        richGame.getGameMap().getGroundList().get(location).setOwners(player.getDisplayName());
+        player.setFunds(player.getFunds()-ground.getPrice());
+        player.getLandedProperty()[0]+=1;
+    }
+
+    private boolean isThePlayerLandProperty(Ground ground) {
+        return ground.getOwners().equals(player.getDisplayName());
+    }
+
+    private boolean isAreaHaveNoOwner(Ground ground) {
+        return ground.getOwners().equals("0");
     }
 
     private int findTheAreaOwner(String owners) {
@@ -188,7 +204,7 @@ public class RollAction {
             player.setPoints(player.getPoints()-50);
             return 1 ;
         }  else{
-            SetColor.printColorStringln("点数不够,退出道具屋",Color.PINK);
+            SetColor.printColorStringln("点数不够,退出道具屋", Color.PINK);
             return 0;
         }
     }

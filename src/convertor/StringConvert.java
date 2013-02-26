@@ -35,17 +35,20 @@ public class StringConvert {
     private String sellRegx ="sell ([0-9]{1}|[1-6]{1}[0-9]{1})";
     private String sellToolRegx ="selltool (1|2|3)";
     public Integer convertFunds(String s) {
-        try{
-            initalFunds = Integer.parseInt(s);
-        } catch (Exception e) {
-            throw new InvalidParameterException(FUNDS_SHOULD_BE_A_NUMBER);
-        }
-        if(initalFunds>50000){
-            throw  new InvalidParameterException(Funds_SHOULD_NOT_EXCEED_THE_MAXIMUM);
-        }  else if(initalFunds<1000)  {
-            throw  new InvalidParameterException(FUNDS_SHOULD_NOT_UNDER_THE_MINIMUM);
-        }
-
+         if(s.equals("")){
+             initalFunds=10000;
+         } else{
+             try{
+                 initalFunds = Integer.parseInt(s);
+             } catch (Exception e) {
+                 throw new InvalidParameterException(FUNDS_SHOULD_BE_A_NUMBER);
+             }
+             if(initalFunds>50000){
+                 throw  new InvalidParameterException(Funds_SHOULD_NOT_EXCEED_THE_MAXIMUM);
+             }  else if(initalFunds<1000)  {
+                 throw  new InvalidParameterException(FUNDS_SHOULD_NOT_UNDER_THE_MINIMUM);
+             }
+         }
         return initalFunds;
     }
 
