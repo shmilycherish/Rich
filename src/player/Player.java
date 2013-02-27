@@ -148,4 +148,14 @@ public abstract class Player {
             this.mascotLeftDays-=1;
         }
     }
+
+    public int checktMascot() {
+        int leftDays=0;
+        if(this.mascotLeftDays>0) {
+            leftDays=this.mascotLeftDays-1;
+            String mascotMessage= "福神在身，剩余"+leftDays+"天  ";
+            SetColor.printline(mascotMessage);
+        }
+        return  leftDays;
+    }
 }

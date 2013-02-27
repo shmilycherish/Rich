@@ -26,6 +26,7 @@ public class APlayerRound {
     public void receiveCommand(UserInput userInput){
         String message=commandOperation.getPlayer().getCharacterName()+" >   " ;
         SetColor.printColorString(message, Color.GRAY);
+        int leftDays=commandOperation.getPlayer().checktMascot();
         CommandInformation  commandInformation=new CommandInformation();
         int i=0;
         while(i==0) {
@@ -48,7 +49,11 @@ public class APlayerRound {
             case QUERY:    commandOperation.query(); break;
             case HELP:    commandOperation.help(); break;
             case QUIT:    commandOperation.quit();setGoing(false); break;
-            case ROLL:    commandOperation.roll();setGoing(false);break;
+            case ROLL:
+                commandOperation.roll();
+                commandOperation.getPlayer().setMascotLeftDays(leftDays);
+                setGoing(false);
+                break;
         }
 
     }

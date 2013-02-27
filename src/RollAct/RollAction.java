@@ -81,7 +81,7 @@ public class RollAction {
         }   else{
             int i=findTheAreaOwner(ground.getOwners()) ;
             if(player.getMascotLeftDays()>0){
-                SetColor.printline("福神在身，免收过路费,还剩"+(player.getMascotLeftDays()-1)+"天");
+                SetColor.printline("福神在身，免收过路费");
             }  else if(richGame.getPlayers().get(i).getHospitalOrPrison()>0){
                 SetColor.printline("主人不在，免收过路费");
             } else{
@@ -91,7 +91,7 @@ public class RollAction {
                       player.setBankrupt(true);
                 }   else{
                     player.setFunds(player.getFunds()-tolls);
-                    SetColor.printline("交过路费"+tolls+"元");
+                    SetColor.printline( richGame.getPlayers().get(i).getCharacterName()+"的地盘,交过路费"+tolls+"元");
                     richGame.getPlayers().get(i).setFunds(richGame.getPlayers().get(i).getFunds() + tolls);
                 }
             }

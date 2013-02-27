@@ -53,13 +53,14 @@ public class Rich {
 
                 richGame.initialPlayers(putPlayer(start, player));
                 if(player.getBankrupt()){
+                    richGame.getPlayers().remove(start);
                     richGame.refreshMap(player.getDisplayName());
                     start--;
                 }
              }  else{
-                String message=commandOperation.getPlayer().getCharacterName()+"> 休息中,还剩" +player.getLeftDays();
-                SetColor.printColorStringln(message, Color.GRAY);
                 player.statusRefresh();
+                String message=commandOperation.getPlayer().getCharacterName()+"> 休息中,还剩" +player.getLeftDays()+"天";
+                SetColor.printColorStringln(message, Color.GRAY);
                 richGame.initialPlayers(putPlayer(start, player));
             }
 

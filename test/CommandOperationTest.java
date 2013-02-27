@@ -174,7 +174,8 @@ public class CommandOperationTest {
     {
         player.setProps(new int[]{1,0,1});
         commandOperation.sellTool(1);
-         assertThat(player.getProps()[0],is(0));
+        assertThat(player.getProps()[0],is(0));
+        assertThat(player.getPoints(),is(50));
     }
 
     @Test(expected = CommandException.class)
@@ -183,4 +184,12 @@ public class CommandOperationTest {
         player.setProps(new int[]{1,0,1});
         commandOperation.sellTool(2);
     }
+
+    @Test
+    public void shouldGetRightDataWhenHaveNoRobotToSell()
+    {
+        player.setProps(new int[]{1,0,1});
+        commandOperation.sellTool(2);
+    }
+
 }

@@ -133,9 +133,11 @@ public class CommandOperation {
          }
     }
 
+    private int[]  propPoints={50,30,50};
     public void sellTool(int toolType){
         if(player.haveProp(toolType)){
             player.getProps()[toolType-1]-=1;
+            player.setPoints(player.getPoints()+propPoints[toolType-1]);
         }   else{
             throw new CommandException("You have no prop of type"+toolType+"to sell ") ;
         }
