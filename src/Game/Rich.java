@@ -26,6 +26,7 @@ public class Rich {
     RichGame richGame;
     int start=0;
     Player player;
+
     public void startRichGame() {
         richPreparation.prepareRichGame();
         richGame=  richPreparation.getRichGame();
@@ -80,9 +81,7 @@ public class Rich {
                  if(i!=start){
                      players.add(i,richGame.getPlayers().get(i) );
                  } else{
-                     if(!player.getBankrupt()){
                          players.add(i,player);
-                     }
                  }
             }
          return players;
@@ -114,4 +113,6 @@ public class Rich {
             richGame.getGameMap().getGroundList().get(richGame.getPlayers().get(i).getLocaion()).setDisplay(richGame.getPlayers().get(i).getDisplayName());
         }
     }
+
+
 }

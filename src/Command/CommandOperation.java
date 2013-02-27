@@ -151,7 +151,9 @@ public class CommandOperation {
         richGame =rollAction.getRichGame() ;
         player= rollAction.getPlayer();
 
-    }   public void quit (){
+    }
+
+    public void quit (){
         richGame.setExitGameFlag(true);
     }
 

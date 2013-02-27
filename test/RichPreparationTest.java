@@ -22,6 +22,7 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class RichPreparationTest {
+
     @Test
     public void shouldMapPrepared(){
         UserInput userInput = Mockito.mock(UserInput.class) ;

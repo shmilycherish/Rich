@@ -86,8 +86,17 @@ public class RollActionTest {
         assertThat(rollAction.getPlayer().getLeftDays(),is(3));
     }
 
+    public void shouldMeetTheBlock (){
+
+        HashMap props=new HashMap();
+        props.put(4,"BLOCK");
+        richGame.setProps(props);
+        rollAction.executeRoll(6);
+        assertThat(rollAction.getPlayer().getLocaion(),is(4));
+    }
+
     @Test
-    public void shouldMeetNoPropWhenGotoASpace (){
+    public void shouldStopInASpace (){
         setUp("y");
         HashMap props=new HashMap();
 
@@ -95,6 +104,7 @@ public class RollActionTest {
         assertThat(rollAction.getPlayer().getLocaion(),is(4));
         assertThat(rollAction.getPlayer().getFunds(),is(9800));
         assertThat(rollAction.getRichGame().getGameMap().getGroundList().get(4).getOwners(),is("S"));
+        assertThat(rollAction.getPlayer().getLandedProperty()[0],is(1));
     }
 
     @Test
